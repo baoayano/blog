@@ -1,0 +1,99 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@utility container {
+    max-width: 1000px;
+    margin-inline: auto;
+    padding-inline: 1rem;
+}
+
+.prose {
+    font-size: 1.125rem;
+
+    h1, h2, h3, h4, h5, h6 {
+        font-weight: 600;
+        margin-top: 2.5rem;
+    }
+
+    h1 {
+        font-size: 2rem;
+        line-height: 2.5rem;
+    }
+
+    h2 {
+        font-size: 1.75rem;
+        line-height: 2.25rem;
+    }
+
+    p {
+        margin-top: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+
+    a {
+        color: #eb427a;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    img {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        border-radius: 0.5rem;
+    }
+
+    :not(pre) > code {
+        font-family: var(--font-code) !important;
+        background-color: #f3f3f362;
+    }
+}
+
+@media (max-width: 720px) {
+    .prose {
+        font-size: 1rem;
+
+        h1 {
+            font-size: 1.75rem;
+            line-height: 2.25rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            line-height: 2rem;
+        }
+
+        code {
+            font-size: 0.875rem;
+        }
+    }
+}
+
+.dark .prose code {
+    background-color: #111111;
+}
+
+.astro-code {
+    font-family: var(--font-code) !important;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin: 1.5rem 0;
+    background-color: #f3f3f362!important;
+
+    span {
+        font-family: var(--font-code) !important;
+    }
+}
+
+.dark {
+    .astro-code,
+    .astro-code span {
+        color: var(--shiki-dark) !important;
+        background-color: #111111 !important;
+        /* Optional, if you also want font styles */
+        font-style: var(--shiki-dark-font-style) !important;
+        font-weight: var(--shiki-dark-font-weight) !important;
+        text-decoration: var(--shiki-dark-text-decoration) !important;
+    }
+}

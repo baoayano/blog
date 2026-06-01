@@ -1,0 +1,69 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<div id="navigation">
+    <div class="container mx-auto flex items-center justify-between px-3 py-3 lg:py-6">
+        <div class="flex gap-x-4 items-center">
+            <a href="/" class="font-semibold text-lg opacity-80 hover:opacity-100 transition-opacity">Home</a>
+            <a href="/blog" class="font-semibold text-lg opacity-80 hover:opacity-100 transition-opacity">Blog</a>
+        </div>
+
+        <div class="ml-auto flex gap-x-4 items-center">
+            <!-- <a
+                href="https://github.com/baoayano"
+                target="_blank"
+                rel="noopener noreferrer"
+            >
+                <Icon name="mdi:github" class="w-8 h-8" />
+            </a> -->
+            <a href="#" id="themeToggle">
+                <Icon
+                    name="mdi:white-balance-sunny"
+                    class="w-7 h-7 hidden"
+                    id="light-icon"
+                />
+                <Icon
+                    name="mdi:moon-and-stars"
+                    class="w-7 h-7 hidden"
+                    id="dark-icon"
+                />
+            </a>
+        </div>
+    </div>
+</div>
+
+<script>
+    const themeToggle = document.getElementById("themeToggle");
+    const lightIcon = document.getElementById("light-icon");
+    const darkIcon = document.getElementById("dark-icon");
+
+    themeToggle?.addEventListener("click", (e) => {
+        e.preventDefault();
+        const isDark = document.documentElement.classList.toggle("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+        if (lightIcon && darkIcon) {
+            lightIcon.classList.toggle("hidden", !isDark);
+            darkIcon.classList.toggle("hidden", isDark);
+        }
+    });
+
+    // Initialize icons based on current theme
+    const themeValue = localStorage.getItem("theme") || "dark";
+    if (lightIcon && darkIcon) {
+        lightIcon.classList.toggle("hidden", themeValue === "light");
+        darkIcon.classList.toggle("hidden", themeValue === "dark");
+    }
+
+    // scroll event
+    window.addEventListener("scroll", () => {
+        const navigation = document.getElementById("navigation");
+        if (navigation) {
+            if (window.scrollY > 50) {
+                navigation.classList.add("fixed", "top-0", "left-0", "w-full", "bg-[#ffffff85]", "dark:bg-[#0d090a85]", "shadow-md", "z-50", "backdrop-blur-md");
+            } else {
+                navigation.classList.remove("fixed", "top-0", "left-0", "w-full", "bg-[#ffffff85]", "dark:bg-[#0d090a85]", "shadow-md", "z-50", "backdrop-blur-md");
+            }
+        }
+    });
+</script>
