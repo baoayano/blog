@@ -184,13 +184,15 @@ applyWidget(process.env.CLIENT_ID, DiscordUserId, NumericId).then(profile => {
 });
 ```
 
-Sửa chỗ `DiscordUserId` thành Discord ID của bạn, riêng `NumericId` bạn có thể điền bất kì cái gì bạn thích. Sau đó lên terminal, gõ `node axios.js` và enter. Nếu bạn thấy dòng sau:
+Sửa chỗ `DiscordUserId` thành Discord ID của bạn, riêng `NumericId` là trường phân biệt widget cho mỗi người dùng (với người dùng cơ bản thì bạn có thể điền cái này tùy thích). Sau đó lên terminal, gõ `node axios.js` và enter. Nếu bạn thấy dòng sau:
 
 ```
 Profile data: 204
 ```
 
 Vậy là ngon rồi, bạn đã apply thành công widget lên tài khoản Discord của mình. Yippe!
+
+*it should be 200 for the first time, but it always shows 204. lol, who knows xD*
 
 ![Widget apply successfully](/posts/post-1_8.png)
 
