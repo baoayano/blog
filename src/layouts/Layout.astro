@@ -1,4 +1,16 @@
 ---
+interface Props {
+    title?: string;
+    description?: string;
+    image?: string;
+}
+
+const {
+    title = "Ari's Blog",
+    description = "A blog about my journey learning web development, sharing tips, and exploring new technologies.",
+    image = "/og.png",
+} = Astro.props;
+
 import "../styles/global.css";
 import { Font } from 'astro:assets';
 import Header from "../components/Header.astro";
@@ -8,10 +20,11 @@ import Header from "../components/Header.astro";
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" href="/favicon.png" type="image/png" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta property="og:image" content={image} />
 		<Font cssVariable="--font-primary" />
 		<Font cssVariable="--font-code" />
 	</head>

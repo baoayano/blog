@@ -15,7 +15,7 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Layout>
+<Layout title={post.data.title}>
     <article class="py-12">
         <a
             href="/blog"
