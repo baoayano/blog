@@ -8,7 +8,7 @@ interface Props {
 const {
     title = "Ari's Blog",
     description = "A blog about my journey learning web development, sharing tips, and exploring new technologies.",
-    image = "/og.png",
+    image = "/opengraph.png",
 } = Astro.props;
 
 import "../styles/global.css";
@@ -25,6 +25,8 @@ import Header from "../components/Header.astro";
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<meta property="og:image" content={image} />
+		<meta property="og:image:width" content="1900">
+		<meta property="og:image:height" content="995">
 		<Font cssVariable="--font-primary" />
 		<Font cssVariable="--font-code" />
 	</head>
