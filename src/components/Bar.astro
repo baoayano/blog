@@ -1,0 +1,25 @@
+<div class="h-1 w-full fixed top-0 left-0 z-50">
+    <div id="animateBar" class="h-full w-[0px] bg-gradient-to-r from-pink-500 to-blue-500"></div>
+</div>
+
+<script>
+    window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = (scrollTop / docHeight) * 100;
+        const animateBar = document.getElementById("animateBar");
+        if (animateBar) {
+            animateBar.style.width = `${scrollPercent}%`;
+        }
+    });
+
+    window.addEventListener("load", () => {
+        const animateBar = document.getElementById("animateBar");
+        if (animateBar) {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            animateBar.style.width = `${scrollPercent}%`;
+        }
+    });
+</script>

@@ -48,6 +48,25 @@
         font-family: var(--font-code) !important;
         background-color: #f3f3f362;
     }
+
+    p:has(+ ul) {
+        margin-bottom: 0.5rem;
+    }
+
+    ul {
+        list-style-type: disc;
+        list-style-position: inside;
+    }
+
+    blockquote {
+        border-left: 4px solid #eb427a;
+        padding-left: 1rem;
+        margin-left: 0;
+        margin-right: 0;
+        margin-top: 1.25rem;
+        margin-bottom: 1.25rem;
+        color: #555555;
+    }
 }
 
 @media (max-width: 720px) {
@@ -67,11 +86,20 @@
         code {
             font-size: 0.875rem;
         }
+
+        blockquote {
+            padding-left: 0.75rem;
+        }
     }
 }
 
 .dark .prose code {
     background-color: #111111;
+}
+
+.dark .prose blockquote {
+    border-color: #eb427a;
+    color: #ffffffda;
 }
 
 .astro-code {

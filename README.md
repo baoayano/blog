@@ -1,46 +1,101 @@
-# Astro Starter Kit: Basics
+# Ari Blog
+
+A personal blog built with Astro, Tailwind CSS 4, and Astro Icon. Posts are written in Markdown under `src/blog`, with each post able to keep its own images beside the Markdown file, then rendered into the blog index, individual post pages, and a homepage that highlights recent posts.
+
+## Features
+
+- Homepage with an intro section and a list of recent posts.
+- Blog index with pagination.
+- Post detail pages with Markdown rendering and code highlighting.
+- Copy button for code blocks inside posts.
+- Sticky header with theme toggle and a scroll progress bar.
+- Light/dark theme persisted in `localStorage`.
+- Open Graph and Twitter metadata for each page.
+
+## Requirements
+
+- Node.js `>=22.12.0`
+- `pnpm`
+
+## Run the Project
 
 ```sh
-pnpm create astro@latest -- --template basics
+pnpm install
+pnpm dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Then open `http://localhost:4321`.
 
-## 🚀 Project Structure
+## Build
 
-Inside of your Astro project, you'll see the following folders and files:
+```sh
+pnpm build
+pnpm preview
+```
+
+## Scripts
+
+| Command | Description |
+| --- | --- |
+| `pnpm dev` | Start the development environment |
+| `pnpm build` | Build the production site into `dist/` |
+| `pnpm preview` | Preview the production build |
+| `pnpm astro` | Run the Astro CLI |
+
+## Main Structure
 
 ```text
 /
 ├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+│   ├── favicon.png
+│   ├── homura.png
+│   └── opengraph.png
+├── src/
+│   ├── assets/
+│   ├── blog/
+│   │   └── discord-widget/
+│   │       ├── cover.png
+│   │       ├── index.md
+│   │       └── post-*.png
+│   ├── components/
+│   │   ├── Bar.astro
+│   │   ├── Footer.astro
+│   │   └── Header.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   ├── pages/
+│   │   ├── index.astro
+│   │   └── blog/
+│   │       ├── [...page].astro
+│   │       └── [slug].astro
+│   ├── styles/
+│   │   └── global.css
+│   ├── content.config.ts
+│   └── utils/
+│       └── icon.ts
+└── astro.config.ts
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## How to create a post
 
-## 🧞 Commands
+1. Create a new folder in `src/blog` for the post, then add an `index.md` file inside it.
+2. Add the required frontmatter fields:
 
-All commands are run from the root of the project, from a terminal:
+```md
+---
+title: Post title
+description: Short description
+pubDate: 2026-06-02
+cover: ./cover.png
+---
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+3. Keep post images in the same folder as the Markdown file and reference them with relative paths like `./post-1.png`.
 
-## 👀 Want to learn more?
+The current repo already includes one post at `src/blog/discord-widget/index.md`.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## Notes
+
+- The default layout lives in `src/layouts/Layout.astro`.
+- The theme is initialized in `Layout.astro` and toggled from `Header.astro`.
+- The blog content schema is defined in `src/content.config.ts`.

@@ -1,5 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import Bar from "../../components/Bar.astro";
 import { Icon } from "astro-icon/components";
 import { getCollection, render } from "astro:content";
 
@@ -15,7 +16,13 @@ const { post } = Astro.props;
 const { Content } = await render(post);
 ---
 
-<Layout title={post.data.title} description={post.data.description} image={post.data.cover}>
+<Layout
+    title={post.data.title}
+    description={post.data.description}
+    image={post.data.cover}
+>
+    <!-- Progress Bar for read progress -->
+    <Bar />
     <article class="py-12">
         <a
             href="/blog"
@@ -30,6 +37,14 @@ const { Content } = await render(post);
         <p class="text-sm md:text-base opacity-80 mb-8">
             Published on {
                 new Date(post.data.pubDate).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                })
+            }
+            <span class="mx-1">|</span>
+            Last updated on {
+                new Date(post.data.updateDate ?? post.data.pubDate).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "long",
                     day: "numeric",
