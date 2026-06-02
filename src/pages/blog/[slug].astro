@@ -14,18 +14,12 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content } = await render(post);
-
-// Opengraph
-const imageUrl = new URL(
-    post.data.opengraph ?? "/opengraph.png",
-    Astro.site ?? "http://localhost:3000"
-).toString();
 ---
 
 <Layout
     title={post.data.title}
     description={post.data.description}
-    image={imageUrl}
+    image={post.data.opengraph}
 >
     <!-- Progress Bar for read progress -->
     <Bar />
