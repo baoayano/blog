@@ -9,6 +9,7 @@ opengraph: /og_posts/cover_discord-widget.png
 
 > **Lưu ý:** 
 > - Cách mình hướng dẫn không hẳn là cách tốt nhất nhưng cơ bản là vẫn thực hiện được.
+> - Đây là một trong số các cách làm Custom Widget an toàn, bạn không nên tin vào mấy cái web, software **Discord Layout Maker** có sẵn trên mạng đâu. Bởi khi bạn authorize với link của họ, OAuth2 Token với quyền sdk.social_layer sẽ giúp bọn họ xem tin nhắn, gửi tin nhắn trái phép trên tài khoản của bạn 🤑.
 > - Discord sẽ sớm release **official documentation** về tính năng này trong thời gian tới, vì vậy hãy thực hiện trò này sớm trước khi nó không còn hoạt động 🐧.
 
 Thời gian gần đây, Discord đã ra mắt tính năng Profile Widget, nhưng bạn không thể tùy chỉnh nó theo ý muốn mà phải phụ thuộc vào các ứng dụng và trò chơi được liên kết. Trong bài viết này, mình sẽ chia sẻ cách tạo một Profile Widget custom bằng cách tận dụng một số thủ thuật thú vị mà Discord hiện vẫn hỗ trợ.
