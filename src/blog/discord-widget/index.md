@@ -4,6 +4,7 @@ description: Thời gian gần đây, Discord đã ra mắt tính năng Profile 
 pubDate: 2026-06-01
 updateDate: 2026-06-02
 cover: ./cover.png
+opengraph: /og_posts/cover_discord-widget.png
 ---
 
 > **Lưu ý:** 
