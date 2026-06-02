@@ -166,32 +166,61 @@ const NumericId = "một cái gì đấy";
 
 async function applyWidget(botID, userID, numericId) {
     try {
-        const response = await axios.patch("https://discord.com/api/v9" + endpoint.replace(":botID", botID).replace(":userID", userID).replace(":numericId", numericId), {
-            // phần này là JSON data bạn đã export dành cho "User Data" type
-            // bạn có thể tùy chỉnh phần này cho application riêng mà bạn code chẳng hạn :)
-        }, {
-            headers: {
-                "Authorization": `Bot ${process.env.TOKEN}`,
+        const url =
+            "https://discord.com/api/v9" +
+            endpoint
+                .replace(":botID", botID)
+                .replace(":userID", userID)
+                .replace(":numericId", numericId);
+
+        const response = await axios.patch(
+            url,
+            {
+                data: {
+                    dynamic: [
+                        // Với người dùng sử dụng 100% "Custom String", không cần để ý phần này.
+                        // Riêng với người dùng có sử dụng "User Data", hãy đưa JSON data bạn đã export vào đây.
+                    ],
+                },
+            },
+            {
+                headers: {
+                    Authorization: `Bot ${process.env.TOKEN}`,
+                },
+                timeout: 10000
             }
-        });
+        );
+
         return response.status;
     } catch (error) {
-        console.error("Error applying widget:", error);
+        console.error(
+            "Error applying widget:",
+            error.response?.data || error.message
+        );
         throw error;
     }
 }
 
-applyWidget(process.env.CLIENT_ID, DiscordUserId, NumericId).then(profile => {
-    console.log("Profile data:", profile);
-}).catch(error => {
-    console.error("Failed to apply widget:", error);
-});
+applyWidget(
+    process.env.CLIENT_ID,
+    DiscordUserId,
+    NumericId
+)
+    .then((profile) => {
+        console.log("Status:", profile);
+    })
+    .catch((error) => {
+        console.error(
+            "Failed to apply widget:",
+            error.response?.data || error.message
+        );
+    });
 ```
 
 Sửa chỗ `DiscordUserId` thành Discord ID của bạn, riêng `NumericId` là trường phân biệt widget cho mỗi người dùng (với người dùng cơ bản thì bạn có thể điền cái này tùy thích). Sau đó lên terminal, gõ `node axios.js` và enter. Nếu bạn thấy dòng sau:
 
 ```
-Profile data: 204
+Status: 204
 ```
 
 Vậy là ngon rồi, bạn đã apply thành công widget lên tài khoản Discord của mình. Yippe!

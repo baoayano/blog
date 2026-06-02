@@ -1,0 +1,18 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+    <div class="relative w-full h-screen flex justify-center items-center">
+        <div class="py-12 flex items-center gap-y-4 flex-col">
+            <img src="/404.jpg" alt="404 Error" class="w-[150px] rounded-lg max-w-md mb-4" />
+            <h1 class="text-3xl lg:text-4xl font-bold mb-4 text-center lg:text-left">404 - Page Not Found</h1>
+            <p class="text-base lg:text-lg opacity-80 text-center max-w-xl font-medium">
+                Oops! The page you're looking for doesn't exist. It might have been moved or deleted.
+                Please check the URL or return to the <a href="/" class="underline">home page</a>.
+                <br />
+                <i>Or Evil Larry will kidnap you!</i>
+            </p>
+        </div>
+    </div>
+</Layout>
