@@ -58,7 +58,9 @@ Ngược lại, nếu bạn có nhu cầu tùy chỉnh widget sao cho phù hợp
 
 ![Sample Data](./post-3.png)
 
-Để điều chỉnh hiển thị với JSON khi bạn set type **User Data**, hãy để ý đến thanh có dòng **Validation** và **Sample Data**. Click chọn **Sample Data**, nó sẽ hiển thị cho bạn 1 vùng để bạn điều chỉnh JSON data với key và value. Hãy thử nhập một cái gì đấy vào trường **Data Field**, sau đó nhấn **Add Field** ở **Sample Data**, nhập dữ liệu **Key** (**Data Field** bạn nhập trước đó) và **Value** (dữ liệu hiển thị mẫu). Bạn sẽ thấy trên layout widget xuất hiện dòng **Value** mà bạn vừa nhập. Để export JSON data mà bạn đã chỉnh sửa, nhấn nút **Generate JSON** và lưu nó ở đâu đó vì bạn sẽ cần chúng. Hãy cân nhắc sử dụng **Fallback** trong trường hợp dữ liệu người dùng không sẵn có.
+Để điều chỉnh hiển thị với JSON khi bạn set type **User Data**, hãy để ý đến thanh có dòng **Validation** và **Sample Data**. Click chọn **Sample Data**, nó sẽ hiển thị 1 vùng để bạn điều chỉnh JSON data với key và value. Hãy thử nhập một cái gì đấy vào trường **Data Field**, sau đó nhấn **Add Field** ở **Sample Data**, nhập dữ liệu **Key** (**Data Field** bạn nhập trước đó) và **Value** (dữ liệu hiển thị mẫu). Bạn sẽ thấy trên layout widget xuất hiện dòng **Value** mà bạn vừa nhập. Để export JSON data mà bạn đã chỉnh sửa, nhấn nút **Generate JSON** và lưu mấy đoạn được export ở đâu đó vì bạn sẽ cần chúng.
+
+**Lưu ý:** Hãy cân nhắc sử dụng **Fallback** trong trường hợp dữ liệu người dùng không sẵn có.
 
 ![Full Widget](./post-4.png)
 
@@ -66,7 +68,7 @@ Chà... Có vẻ mọi thứ ổn rồi nhỉ? Hãy nhấn vào nút **Save Chan
 
 # Xác thực người dùng và hiển thị Widget
 
-Chúc mừng bạn đã thiết kế xong Custom Widget tuyệt đẹp của bản thân 👏👏👏. Nó vẫn chưa hiển thị trên profile của bạn à 🐧. Ồ! Người thông minh như bạn sẽ biết rằng phải làm thêm một số bước nữa để nó có thể hiển thị trên cái profile của bản thân nhỉ :D. Hãy tạo một con bot trên application hiện tại của bạn (nếu bạn không biết thì tự xem Youtube nhé, đầy người làm rồi). Copy **Client ID**, **Client Secret** và **Bot Token** của bot và lưu ở đâu đấy vì bạn sẽ cần dùng đến nó đấy.
+Chúc mừng bạn đã thiết kế xong Custom Widget tuyệt đẹp của bản thân 👏👏👏. Nó vẫn chưa hiển thị trên profile của bạn à 🐧. Ồ! Người thông minh như bạn sẽ biết rằng phải làm thêm một số bước nữa để nó có thể hiển thị trên cái profile của bản thân nhỉ :D. Hãy tạo một con bot trên application hiện tại của bạn (nếu bạn không biết thì tự xem Youtube nhé, đầy người làm rồi). Copy **Client ID**, **Client Secret** và **Bot Token** của bot và lưu ở đâu đó vì bạn sẽ phải dùng đến đấy.
 
 Một số người sẽ chọn viết mã nguồn cho bot, sau đó sử dụng slash command để làm mọi thứ. Haizzzz... làm vậy rườm rà quá. Hãy tạo một thư mục trên máy tính, mở code editor của bạn lên bằng thư mục đó (ở đây mình dùng **Visual Studio Code**). Tạo file `index.js`, sau đó lên terminal và sử dụng 2 lệnh sau:
 
@@ -260,7 +262,7 @@ Thay chữ `client id` ở dưới cùng thành **Client ID** application của 
 Eheh, giờ bạn đã biết cách tạo Custom Widget rồi đấy! Đừng chia sẻ rộng rãi quá nhé >.<
 
 ## Kết bài
-Một số code được cung cấp bởi **@bachhummus**, hi vọng anh ấy sẽ không giận vì tôi đã chia sẻ guide này lên blog 😁.
+Một số code được cung cấp bởi **@bachhummus**, cảm ơn anh ấy đã contribute rất nhiều cho bài viết 😁.
 
 Nhớ đọc phần lưu ý trước khi thực hiện nhé!
 
