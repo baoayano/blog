@@ -1,9 +1,15 @@
 ---
+// Importing necessary components and functions
 import Layout from "../../layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 
-export async function getStaticPaths({ paginate }: { paginate: any }) {
+// Type definition for blog posts
+import type { Blog } from "../../utils/interface";
+import type { GetStaticPathsOptions } from "astro";
+
+// Generating static paths for pagination based on the total number of blog posts
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
     const posts = await getCollection("blog");
     posts.sort(
         (a, b) =>
@@ -21,7 +27,7 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
 }
 
 const { page } = Astro.props as {
-    page: { data: any[]; currentPage: number; total: number };
+    page: { data: Blog[]; currentPage: number; total: number };
 };
 
 const pageSize = 5;
@@ -47,7 +53,7 @@ const getPageHref = (pageNumber: number) =>
 
     <div class="flex flex-col gap-y-6">
         {
-            page.data.map((post: any) => (
+            page.data.map((post: Blog) => (
                 <a href={`/blog/${post.id}`} class="block flex flex-col lg:flex-row gap-x-6 group">
                     <div class="overflow-hidden rounded-lg w-full max-h-[200px] sm:max-h-[350px] md:max-h-[380px] lg:w-[330px] lg:max-h-[160px]">
                         <img

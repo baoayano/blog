@@ -1,19 +1,17 @@
 ---
-interface Props {
-	title?: string;
-	description?: string;
-	image?: string;
-}
+// Importing necessary components and functions
+import "../styles/global.css";
+import { Font } from "astro:assets";
+import Header from "../components/Header.astro";
+
+// Type definition for layout props
+import type { Props } from "../utils/interface";
 
 const {
 	title = "Ari's Blog",
 	description = "A blog about my journey learning web development, sharing tips, and exploring new technologies.",
 	image = "/opengraph.png",
 } = Astro.props;
-
-import "../styles/global.css";
-import { Font } from "astro:assets";
-import Header from "../components/Header.astro";
 
 // Opengraph
 const imageUrl = new URL(

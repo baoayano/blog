@@ -1,12 +1,17 @@
 ---
+// Importing necessary components and functions
 import Layout from "../../layouts/Layout.astro";
 import Bar from "../../components/Bar.astro";
 import { Icon } from "astro-icon/components";
 import { getCollection, render } from "astro:content";
 
+// Type definition for blog posts
+import type { Blog } from "../../utils/interface";
+
+// Generating static paths for each blog post based on their IDs
 export async function getStaticPaths() {
     const posts = await getCollection("blog");
-    return posts.map((post: any) => ({
+    return posts.map((post: Blog) => ({
         params: { slug: post.id },
         props: { post },
     }));

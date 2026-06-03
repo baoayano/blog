@@ -1,9 +1,14 @@
 ---
+// Importing necessary components and functions
 import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
 import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
-import Footer from "../components/Footer.astro";
 
+// Type definition for blog posts
+import type { Blog } from "../utils/interface";
+
+// Fetching blog posts and sorting them by publication date
 const posts = await getCollection("blog");
 posts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
 ---
@@ -49,7 +54,7 @@ posts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDat
 		<h2 class="text-2xl lg:text-3xl font-semibold mb-6">Recent Posts</h2>
 		<div class="grid gap-6 md:grid-cols-2">
 			{
-				posts.slice(0, 4).map((post: any) => (
+				posts.slice(0, 4).map((post: Blog) => (
 					<a href={`/blog/${post.id}`} class="block group">
 						<div class="overflow-hidden rounded-lg w-full h-[230px]">
 							<img
