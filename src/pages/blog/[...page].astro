@@ -23,6 +23,14 @@ export async function getStaticPaths({ paginate }: { paginate: any }) {
 const { page } = Astro.props as {
     page: { data: any[]; currentPage: number; total: number };
 };
+
+const pageSize = 5;
+const totalPages = Math.ceil(page.total / pageSize);
+const previousPage = page.currentPage > 1 ? page.currentPage - 1 : null;
+const nextPage = page.currentPage < totalPages ? page.currentPage + 1 : null;
+
+const getPageHref = (pageNumber: number) =>
+    pageNumber === 1 ? "/blog" : `/blog/${pageNumber}`;
 ---
 
 <Layout
@@ -73,20 +81,55 @@ const { page } = Astro.props as {
             ))
         }
 
-        <!-- pagination -->
-        <div class="mx-auto mt-12">
-            <a
-                href={`/blog/${(page.currentPage - 1) < 2 ? '' : page.currentPage - 1}` }
-                class="rounded-md opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
-            >
-                <Icon name="mdi:chevron-left" class="w-12 h-12 inline-block" />
-            </a>
-            <a
-                href={`/blog/${(Math.ceil(page.total / 5) < page.currentPage + 1 ? (page.currentPage === 1 ? '' : page.currentPage + 1) : page.currentPage + 1)}` }
-                class="rounded-md opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
-            >
-                <Icon name="mdi:chevron-right" class="w-12 h-12 inline-block" />
-            </a>
-        </div>
+        {
+            totalPages > 1 && (
+                <nav
+                    aria-label="Blog pagination"
+                    class="mx-auto mt-12 pb-12 flex items-center gap-x-4"
+                >
+                    {
+                        previousPage ? (
+                            <a
+                                href={getPageHref(previousPage)}
+                                aria-label="Previous page"
+                                class="rounded-md opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
+                            >
+                                <Icon name="mdi:chevron-left" class="w-12 h-12 inline-block" />
+                            </a>
+                        ) : (
+                            <span
+                                aria-disabled="true"
+                                class="rounded-md opacity-30 cursor-not-allowed"
+                            >
+                                <Icon name="mdi:chevron-left" class="w-12 h-12 inline-block" />
+                            </span>
+                        )
+                    }
+
+                    <span class="text-sm opacity-80">
+                        Page {page.currentPage} of {totalPages}
+                    </span>
+
+                    {
+                        nextPage ? (
+                            <a
+                                href={getPageHref(nextPage)}
+                                aria-label="Next page"
+                                class="rounded-md opacity-80 hover:opacity-100 transition-opacity cursor-pointer"
+                            >
+                                <Icon name="mdi:chevron-right" class="w-12 h-12 inline-block" />
+                            </a>
+                        ) : (
+                            <span
+                                aria-disabled="true"
+                                class="rounded-md opacity-30 cursor-not-allowed"
+                            >
+                                <Icon name="mdi:chevron-right" class="w-12 h-12 inline-block" />
+                            </span>
+                        )
+                    }
+                </nav>
+            )
+        }
     </div>
 </Layout>
