@@ -25,6 +25,11 @@
         line-height: 2.25rem;
     }
 
+    h3 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+    }
+
     p {
         margin-top: 1.25rem;
         margin-bottom: 1.25rem;
@@ -66,6 +71,19 @@
         margin-top: 1.25rem;
         margin-bottom: 1.25rem;
         color: #555555;
+
+        p {
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+
+        p:not(:first-child) {
+            margin-top: 0.25rem;
+        }
+    }
+
+    li ul {
+        margin-left: 1rem;
     }
 }
 
@@ -83,12 +101,21 @@
             line-height: 2rem;
         }
 
+        h3 {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+        }
+
         code {
             font-size: 0.875rem;
         }
 
         blockquote {
             padding-left: 0.75rem;
+        }
+
+        li ul {
+            margin-left: 0.5rem;
         }
     }
 }

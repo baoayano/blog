@@ -2,7 +2,7 @@
 title: Cách tạo Discord Custom Widget
 description: Thời gian gần đây, Discord đã ra mắt tính năng Profile Widget, nhưng bạn không thể tùy chỉnh nó theo ý muốn mà phải phụ thuộc vào các ứng dụng và trò chơi được liên kết. Trong bài viết này, mình sẽ chia sẻ cách tạo một Profile Widget custom bằng cách tận dụng một số thủ thuật thú vị mà Discord hiện vẫn hỗ trợ.
 pubDate: 2026-06-01
-updateDate: 2026-06-02
+updateDate: 2026-06-04
 cover: ./cover.png
 opengraph: /og_posts/cover_discord-widget.png
 ---
@@ -10,7 +10,20 @@ opengraph: /og_posts/cover_discord-widget.png
 > **Lưu ý:** 
 > - Cách mình hướng dẫn không hẳn là cách tốt nhất nhưng cơ bản là vẫn thực hiện được.
 > - Đây là một trong số các cách làm Custom Widget an toàn, bạn không nên tin vào mấy cái web, software **Discord Layout Maker** có sẵn trên mạng đâu. Bởi khi bạn authorize với link của họ, OAuth2 Token với quyền sdk.social_layer sẽ giúp bọn họ xem tin nhắn, gửi tin nhắn trái phép trên tài khoản của bạn 🤑.
-> - Discord sẽ sớm release **official documentation** về tính năng này trong thời gian tới, vì vậy hãy thực hiện trò này sớm trước khi nó không còn hoạt động 🐧.
+
+> ### **Cập nhật 04/06/2026 (Discord Previews):**
+>
+> Vào ngày 05/06/2026, Discord chính thức hạn chế khả năng người dùng thêm Custom Widget.
+>
+> **Điều này nghĩa là gì?**
+> - Bạn sẽ không thể chỉnh sửa Custom Widget của mình nếu trong đó có các application mà bạn không tự tạo.
+> - Bạn sẽ không thể thêm các Custom Widget vào profile nếu bạn không sở hữu application đó.
+> - Bạn vẫn có thể phát triển các widget cá nhân của riêng mình.
+> - Để thêm một widget vào profile, bạn phải:
+>   - Là chủ sở hữu của application, hoặc
+>   - Là thành viên trong team sở hữu application đó và có ít nhất quyền Developer.
+>
+> **Túm cái váy lại,** cách hiện tại mình đang chia sẻ vẫn dùng được tốt và được khuyến khích, nhưng mấy cái **Layout Maker** trên mạng vô dụng rồi nha >.<
 
 Thời gian gần đây, Discord đã ra mắt tính năng Profile Widget, nhưng bạn không thể tùy chỉnh nó theo ý muốn mà phải phụ thuộc vào các ứng dụng và trò chơi được liên kết. Trong bài viết này, mình sẽ chia sẻ cách tạo một Profile Widget custom bằng cách tận dụng một số thủ thuật thú vị mà Discord hiện vẫn hỗ trợ.
 
