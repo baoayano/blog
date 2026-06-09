@@ -52,6 +52,7 @@
     :not(pre) > code {
         font-family: var(--font-code) !important;
         background-color: #f3f3f362;
+        border: 1px solid #e2e2e2;
     }
 
     p:has(+ ul) {
@@ -120,8 +121,9 @@
     }
 }
 
-.dark .prose code {
+.dark :not(pre) > code {
     background-color: #111111;
+    border: 1px solid #1a1a1a;
 }
 
 .dark .prose blockquote {
