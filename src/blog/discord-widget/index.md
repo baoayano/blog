@@ -2,14 +2,14 @@
 title: Cách tạo Discord Custom Widget
 description: Thời gian gần đây, Discord đã ra mắt tính năng Profile Widget, nhưng bạn không thể tùy chỉnh nó theo ý muốn mà phải phụ thuộc vào các ứng dụng và trò chơi được liên kết. Trong bài viết này, mình sẽ chia sẻ cách tạo một Profile Widget custom bằng cách tận dụng một số thủ thuật thú vị mà Discord hiện vẫn hỗ trợ.
 pubDate: 2026-06-01
-updateDate: 2026-06-09
+updateDate: 2026-06-11
 cover: ./cover.png
 opengraph: /og_posts/cover_discord-widget.png
 ---
 
-> **Lưu ý:** 
-> - Cách mình hướng dẫn không hẳn là cách tốt nhất nhưng cơ bản là vẫn thực hiện được.
-> - Từ ngày 05/06/2026, bạn không thể sử dụng application của người khác để add widget cho mình. Để có **Custom Widget**, bạn sẽ buộc phải sử dụng cách thủ công bên dưới.
+> ***Lưu ý:***
+> - *Cách mình hướng dẫn không hẳn là cách tốt nhất nhưng cơ bản là vẫn thực hiện được.*
+> - *Từ ngày 05/06/2026, bạn không thể sử dụng application của người khác để add widget cho mình. Để có **Custom Widget**, bạn sẽ buộc phải sử dụng cách thủ công bên dưới.*
 
 Thời gian gần đây, Discord đã ra mắt tính năng Profile Widget, nhưng bạn không thể tùy chỉnh nó theo ý muốn mà phải phụ thuộc vào các ứng dụng và trò chơi được liên kết. Trong bài viết này, mình sẽ chia sẻ cách tạo một Profile Widget custom bằng cách tận dụng một số thủ thuật thú vị mà Discord hiện vẫn hỗ trợ.
 
@@ -59,13 +59,15 @@ Ngược lại, nếu bạn có nhu cầu tùy chỉnh widget sao cho phù hợp
 
 Để điều chỉnh hiển thị với JSON khi bạn set type **User Data**, hãy để ý đến thanh có dòng **Validation** và **Sample Data**. Click chọn **Sample Data**, nó sẽ hiển thị 1 vùng để bạn điều chỉnh JSON data với key và value. Hãy thử nhập một cái gì đấy vào trường **Data Field**, sau đó nhấn **Add Field** ở **Sample Data**, nhập dữ liệu **Key** (**Data Field** bạn nhập trước đó) và **Value** (dữ liệu hiển thị mẫu). Bạn sẽ thấy trên layout widget xuất hiện dòng **Value** mà bạn vừa nhập. Để export JSON data mà bạn đã chỉnh sửa, nhấn nút **Generate JSON** và lưu mấy đoạn được export ở đâu đó vì bạn sẽ cần chúng.
 
-**Lưu ý:** Hãy cân nhắc sử dụng **Fallback** trong trường hợp dữ liệu người dùng không sẵn có.
+> ***Reminder:** Hãy cân nhắc sử dụng **Fallback** trong trường hợp dữ liệu người dùng không sẵn có.*
 
 ![Full Widget](./post-4.png)
 
 Chà... Có vẻ mọi thứ ổn rồi nhỉ? Hãy nhấn vào nút **Save Changes** và **Publish** phía trên để lưu và xác nhận hiển thị toàn bộ mọi thứ.
 
 # Xác thực người dùng và hiển thị Widget
+
+> *Yêu cầu bạn phải cài đặt [NodeJS](https://nodejs.org/en/download) trước khi thực hiện.*
 
 Chúc mừng bạn đã thiết kế xong Custom Widget tuyệt đẹp của bản thân 👏👏👏. Nó vẫn chưa hiển thị trên profile của bạn à 🐧. Ồ! Người thông minh như bạn sẽ biết rằng phải làm thêm một số bước nữa để nó có thể hiển thị trên cái profile của bản thân nhỉ :D. Hãy tạo một con bot trên application hiện tại của bạn (nếu bạn không biết thì tự xem Youtube nhé, đầy người làm rồi). Copy **Client ID**, **Client Secret** và **Bot Token** của bot và lưu ở đâu đó vì bạn sẽ phải dùng đến đấy.
 
@@ -85,6 +87,8 @@ REDIRECT_URI=http://localhost:3000/callback
 TOKEN=token của bot
 ```
 
+> *Một số người sẽ nhầm file `.env` thành `env`, vui lòng thêm dấu chấm đằng trước. Xin cảm ơn!*
+
 Sau đó vào file `index.js`, paste đoạn code sau vào:
 
 ```javascript
@@ -99,45 +103,29 @@ app.get('/', (req, res) => {
     const scope = encodeURIComponent('openid sdk.social_layer');
 
     const url = 
-        `https://discord.com/oauth2/authorize`
+        "https://discord.com/oauth2/authorize"
         + `?client_id=${CLIENT_ID}`
         + `&redirect_uri=${encodeURIComponent(REDIRECT_URI)}`
-        + `&response_type=code`
+        + "&response_type=token"
         + `&scope=${scope}`;
 
     res.redirect(url);
 })
 
 app.get('/callback', async (req, res) => {
-    const code = req.query.code;
-    
-    if (!code) {
-        return res.status(400).send('No code provided');
-    }
-
-    const body = new URLSearchParams({
-        client_id: CLIENT_ID,
-        client_secret: CLIENT_SECRET,
-        grant_type: 'authorization_code',
-        code,
-        redirect_uri: REDIRECT_URI,
-    });
-
-    const tokenResponse = await fetch('https://discord.com/api/oauth2/token', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        body,
-    });
-
-    if (!tokenResponse.ok) {
-        const errorText = await tokenResponse.text();
-        return res.status(500).send(`Failed to exchange code for token: ${errorText}`);
-    }
-
-    const tokenData = await tokenResponse.json();
-    res.json(tokenData);
+    res.send(`
+        <p id="result"></p>
+        <script>
+            const resultElement = document.getElementById('result');
+            const params = new URLSearchParams(location.hash.slice(1));
+            const accessToken = params.get('access_token');
+            if (accessToken) {
+                resultElement.textContent = 'Retrieved access token successfully, you can now close this page.';
+            } else {
+                resultElement.textContent = 'Failed to retrieve access token.';
+            }
+        </script>
+    `)
 });
 
 app.listen(3000, () => {
@@ -156,7 +144,15 @@ Có vẻ ổn rồi nhỉ. Giờ hãy truy cập vào đường dẫn `http://lo
 
 ![Authorize application](./post-7.png)
 
-Sau khi xác thực xong, bạn hãy vào lại code editor, tạo thêm một file `axios.js`, sau đó paste đoạn code sau:
+Sau khi xác thực thành công, khi chuyển đến trang callback, bạn sẽ thấy dòng sau:
+
+```
+Retrieved access token successfully, you can now close this page.
+```
+
+> *Nếu hiển thị khác kết quả bên trên, vui lòng kiểm tra lại xem bạn đã thực hiện đúng các bước chưa.*
+
+Bạn hãy vào lại code editor, tạo thêm một file `axios.js`, sau đó paste đoạn code sau:
 
 ```javascript
 const axios = require('axios');
@@ -221,13 +217,11 @@ applyWidget(
 
 Sửa chỗ `DiscordUserId` thành Discord ID của bạn, riêng `NumericId` là trường phân biệt widget cho mỗi người dùng (với người dùng cơ bản thì bạn có thể điền cái này tùy thích). Sau đó lên terminal, gõ `node axios.js` và enter. Nếu bạn thấy dòng sau:
 
-```
-Status: 204
+```bash
+Status: 201 # (hoặc 204)
 ```
 
 Vậy là ngon rồi, bạn đã apply thành công widget lên tài khoản Discord của mình. Yippe!
-
-*it should be 200 for the first time, but it always shows 204. lol, who knows xD*
 
 ![Widget apply successfully](./post-8.png)
 
@@ -260,7 +254,7 @@ addWidget("client id")
 ```
 Thay chữ `client id` ở dưới cùng thành **Client ID** application của bạn, sau đó enter để chính thức apply widget 🤑.
 
-*Nếu bạn không biết bật DevTools trên App Discord, tham khảo ở đây nhé: [Side Note: How to Enable DevTools in Discord](https://padraig.blog/side-note-how-to-enable-devtools-in-discord-on-macos/).*
+> *Nếu bạn không biết bật DevTools trên App Discord, tham khảo ở đây nhé: [Side Note: How to Enable DevTools in Discord](https://padraig.blog/side-note-how-to-enable-devtools-in-discord-on-macos/).*
 
 ![Widget apply successfully](./post-9.png)
 
