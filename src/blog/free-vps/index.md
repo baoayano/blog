@@ -7,7 +7,7 @@ cover: ./cover.png
 opengraph: /og_posts/cover_free-vps.jpg
 ---
 
-> ***Cập nhật 26/06/2026:** Offer này vẫn hoạt động bình thường.*
+> ***Cập nhật 28/06/2026:** Offer này đã không còn hoạt động.*
 
 Trong quá trình phát triển khóa học **DevOps**, **F8** đã hợp tác với **InterData** nhằm mang đến cho học viên cơ hội trải nghiệm môi trường máy chủ thực tế ngay trong quá trình học tập. Thông qua chương trình hợp tác này, mỗi học viên đủ điều kiện sẽ được nhận một **VPS Linux miễn phí** trong vòng 1 tháng để thực hành các kiến thức về Linux, Docker, CI/CD, triển khai ứng dụng và nhiều nội dung khác trong lộ trình DevOps. Trong bài viết này, mình sẽ hướng dẫn chi tiết cách đăng ký và nhận VPS Linux miễn phí từ F8, đồng thời chia sẻ một số lưu ý quan trọng để bạn có thể kích hoạt và sử dụng máy chủ một cách nhanh chóng, hiệu quả nhất.
 
