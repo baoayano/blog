@@ -2,6 +2,7 @@
 import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
@@ -34,5 +35,6 @@ export default defineConfig({
             weights: [400, 500, 600, 700, 800],
             subsets: ['latin', 'latin-ext', 'vietnamese'],
         }
-    ]
+    ],
+    adapter: vercel(),
 });
