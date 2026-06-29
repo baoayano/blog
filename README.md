@@ -2,6 +2,8 @@
 
 A personal blog built with Astro, Tailwind CSS 4, Astro Icon, Firebase, and Cloudflare Turnstile. Posts are written in Markdown under `src/blog`, with each post able to keep its own images beside the Markdown file, then rendered into the blog index, individual post pages, and a homepage that highlights recent posts.
 
+![Ari's Blog](https://baoayano.github.io/blog.png)
+
 ## Features
 
 - Homepage with an intro section and a list of recent posts.
