@@ -6,4 +6,11 @@ export interface Props {
 	image?: string;
 }
 
+export interface Comment {
+	name: string;
+	postId: string;
+	comment: string;
+	createdAt: number;
+}
+
 export type Blog = CollectionEntry<"blog">;
