@@ -2,18 +2,18 @@
 title: Cách tạo Discord Custom Widget
 description: Thời gian gần đây, Discord đã ra mắt tính năng Profile Widget, nhưng bạn không thể tùy chỉnh nó theo ý muốn mà phải phụ thuộc vào các ứng dụng và trò chơi được liên kết. Trong bài viết này, mình sẽ chia sẻ cách tạo một Profile Widget custom bằng cách tận dụng một số thủ thuật thú vị mà Discord hiện vẫn hỗ trợ.
 pubDate: 2026-06-01
-updateDate: 2026-06-11
+updateDate: 2026-07-22
 cover: ./cover.png
 opengraph: /og_posts/cover_discord-widget.png
 ---
 
-> ***Lưu ý:***
-> - *Cách mình hướng dẫn không hẳn là cách tốt nhất nhưng cơ bản là vẫn thực hiện được.*
-> - *Từ ngày 05/06/2026, bạn không thể sử dụng application của người khác để add widget cho mình. Để có **Custom Widget**, bạn sẽ buộc phải sử dụng cách thủ công bên dưới.*
+> ***Lưu ý:** Hướng dẫn này không phải cách tốt nhất nhưng vẫn có thể thực hiện.*
 
 Thời gian gần đây, Discord đã ra mắt tính năng Profile Widget, nhưng bạn không thể tùy chỉnh nó theo ý muốn mà phải phụ thuộc vào các ứng dụng và trò chơi được liên kết. Trong bài viết này, mình sẽ chia sẻ cách tạo một Profile Widget custom bằng cách tận dụng một số thủ thuật thú vị mà Discord hiện vẫn hỗ trợ.
 
 # Tạo Discord Application và Setup
+
+> ***(\*) Dành cho người lười:** Rút gọn các bước bên dưới bằng [Script của aamiaa](https://gist.github.com/aamiaa/7cdd590e3949cd654758bc90bcb4710b).*
 
 Đầu tiên, bạn hãy tiến hành truy cập vào [Discord Developer Portal](https://discord.com/developers/home) và tiến hành tạo cho mình một application mới. Nhấn nút **Create** -> **Create blank app** -> Điền tên app và nhấn **Create**. Sau khi vào cửa sổ app của bạn, tìm mục **Games** và chọn **Social SDK**.
 
@@ -266,3 +266,5 @@ Một số code được cung cấp bởi **@bachhummus**, cảm ơn anh ấy đ
 Nhớ đọc phần lưu ý trước khi thực hiện nhé!
 
 Cảm ơn mọi người đã đọc, chúc mọi người thực hiện thành công <3
+
+***(\*) Thông tin bổ sung:** Từ ngày 05/06/2026, bạn không thể áp dụng widget trên application của bản thân lên user khác.*
