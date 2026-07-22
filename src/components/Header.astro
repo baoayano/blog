@@ -50,83 +50,49 @@ import { Icon } from "astro-icon/components";
     const lightIcon = document.getElementById("light-icon");
     const darkIcon = document.getElementById("dark-icon");
 
-    window.onload = () => {
-        themeToggle?.addEventListener("click", (e) => {
-            e.preventDefault();
-            const isDark = document.documentElement.classList.toggle("dark");
-            localStorage.setItem("theme", isDark ? "dark" : "light");
-            if (lightIcon && darkIcon) {
-                lightIcon.classList.toggle("hidden", !isDark);
-                darkIcon.classList.toggle("hidden", isDark);
-            }
-        });
-
-        // Initialize icons based on current theme
-        const themeValue = localStorage.getItem("theme") || "dark";
+    const updateThemeIcons = (isDark: boolean) => {
         if (lightIcon && darkIcon) {
-            lightIcon.classList.toggle("hidden", themeValue === "light");
-            darkIcon.classList.toggle("hidden", themeValue === "dark");
+            lightIcon.classList.toggle("hidden", !isDark);
+            darkIcon.classList.toggle("hidden", isDark);
         }
     };
 
-    // scroll event
-    window.addEventListener("scroll", () => {
-        if (navigation && statusCode === 200) {
-            if (window.scrollY > 50) {
-                navigation.classList.add(
-                    "fixed",
-                    "top-0",
-                    "left-0",
-                    "w-full",
-                    "bg-[#ffffff85]",
-                    "dark:bg-[#0d090a85]",
-                    "shadow-md",
-                    "z-50",
-                    "backdrop-blur-md",
-                );
-            } else {
-                navigation.classList.remove(
-                    "fixed",
-                    "top-0",
-                    "left-0",
-                    "w-full",
-                    "bg-[#ffffff85]",
-                    "dark:bg-[#0d090a85]",
-                    "shadow-md",
-                    "z-50",
-                    "backdrop-blur-md",
-                );
-            }
-        }
+    themeToggle?.addEventListener("click", (event) => {
+        event.preventDefault();
+        const isDark = document.documentElement.classList.toggle("dark");
+        localStorage.setItem("theme", isDark ? "dark" : "light");
+        updateThemeIcons(isDark);
     });
 
-    window.addEventListener("load", () => {
-        if (navigation) {
-            if (window.scrollY > 50 || statusCode !== 200) {
-                navigation.classList.add(
-                    "fixed",
-                    "top-0",
-                    "left-0",
-                    "w-full",
-                    "bg-[#ffffff85]",
-                    "dark:bg-[#0d090a85]",
-                    statusCode === 200 ? "shadow-md" : "shadow-none",
-                    "z-50",
-                    "backdrop-blur-md",
-                );
-            } else {
-                navigation.classList.remove(
-                    "fixed",
-                    "top-0",
-                    "left-0",
-                    "w-full",
-                    "bg-[#ffffff85]",
-                    "dark:bg-[#0d090a85]",
-                    "shadow-md",
-                    "z-50",
-                    "backdrop-blur-md",
-                );
-            }
+    const initialTheme = localStorage.getItem("theme") || "dark";
+    updateThemeIcons(initialTheme === "dark");
+
+    const updateNavigation = () => {
+        if (!navigation) return;
+
+        const shouldFix = window.scrollY > 50 || statusCode !== 200;
+        navigation.classList.toggle("fixed", shouldFix);
+        navigation.classList.toggle("top-0", shouldFix);
+        navigation.classList.toggle("left-0", shouldFix);
+        navigation.classList.toggle("w-full", shouldFix);
+        navigation.classList.toggle("bg-[#ffffff85]", shouldFix);
+        navigation.classList.toggle("dark:bg-[#0d090a85]", shouldFix);
+        navigation.classList.toggle("z-50", shouldFix);
+        navigation.classList.toggle("backdrop-blur-md", shouldFix);
+        navigation.classList.toggle(
+            "shadow-md",
+            shouldFix && statusCode === 200,
+        );
+        navigation.classList.toggle(
+            "shadow-none",
+            shouldFix && statusCode !== 200,
+        );
+
+        if (!shouldFix) {
+            navigation.classList.remove("shadow-none");
         }
-    });
+    };
+
+    updateNavigation();
+    window.addEventListener("scroll", updateNavigation, { passive: true });
 </script>
