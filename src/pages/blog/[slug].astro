@@ -209,7 +209,7 @@ const { Content } = await render(post);
             }
         });
 
-        window.onload = function () {
+        window.addEventListener("load", () => {
             const commentList = document.getElementById("commentsList");
             if (!commentList) return;
             fetch(`/api/view?postId=${postId}`)
@@ -250,7 +250,7 @@ const { Content } = await render(post);
                 .catch((error) => {
                     console.error("Error fetching comments:", error);
                 });
-        };
+        }, { once: true });
 
         function createButton(
             text: string,
