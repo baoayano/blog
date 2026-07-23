@@ -298,18 +298,86 @@ Vậy là đã cài đặt xong 👏👏👏. Đến bước tiếp theo thôi!
 
 <h4 class="title_stuff">
 
-**Bước 2:** Bật plugin **Questify**.
+**Bước 2:** Bật và tùy chỉnh cài đặt plugin **Questify**.
 </h4>
 
 Vào việc luôn! Bật app Discord của bạn lên, vào phần cài đặt, để ý sẽ thấy khu vực **Equicord Settings**, chọn tab **Plugins**.
 
 ![Equicord Plugins](./post-7.png)
 
-Làm theo trình tự sau: Tìm kiếm `Questify` -> Nhấn nút bật plugin -> Khởi động lại **Equicord**.
+Làm theo trình tự sau: Tìm kiếm `Questify` -> Nhấn nút bật plugin -> Nhấn icon **Cài đặt**.
 
-![Equicord Plugins](./post-8.png)
+![Questify 1](./post-8.png)
+
+Tại cửa sổ cài đặt plugin **Questify**, ta chú ý đến phần có nền đỏ. Hãy tiến hành bật hết tất cả các chức năng, riêng phần **`Auto-complete specific Quest types`** chọn tất cả các **Quest type**.
+
+![Questify 2](./post-9.png)
+![Questify 3](./post-10.png)
+
+Sau đó thoát ra ngoài, khởi động lại Discord 🤑...
 
 <h4 class="title_stuff">
 
-**Bước 3:** Tùy chỉnh cài đặt **Questify**
+**Bước 3:** Tự động hoàn thành **Quest**!!
 </h4>
+
+Vào khu vực **Quest**, click vào nút **Complete** bất kì để tự động hoàn thành.
+
+> **Lợi ích:**
+> - *Bạn có thể thực hiện nhiều Quest cùng một lúc, điều mà script của aamiaa không thể làm được.*
+> - *Các quest hiện nút **Complete Now** sẽ có thời gian hoàn thành gần như ngay lập tức.*
+
+![Questify 4](./post-11.png)
+
+Ngon, đỡ tốn thời gian 🗣️🔥🔥🔥🔥. Giờ đến mục tiếp theo thôi!
+
+### 3. Bot/Website hoàn thành Quest tự động (Rủi ro cao)
+
+Mình không khuyến khích các bạn thực hiện cách này (trừ khi chính bạn là người viết bot/website). Bởi để **Discord Bot/Website** hoàn thành quest tự động, bạn sẽ phải gửi **token** tài khoản của bản thân. Việc này rất nguy hiểm bởi token gần như là **"chìa khóa đăng nhập"** vào tài khoản Discord của bạn. Nếu gửi token cho một bot hoặc website không đáng tin cậy, kẻ xấu có thể chiếm quyền tài khoản, đọc tin nhắn, gửi spam, tham gia máy chủ hoặc thực hiện các hành vi vi phạm thay bạn. Vì vậy, tuyệt đối không chia sẻ token cho bất kỳ ai.
+
+*u know, người thông minh không ai giao credentials tài khoản cá nhân cho một bên không rõ nguồn gốc cả...* 😎
+
+## Kiếm thêm nhiều Quest bằng VPN
+
+> *Cẩn thận bị ăn rate limit/temp ban đấy nhé mấy con vợ >.<*
+
+Hết Quest để làm rồi à... chán nhỉ? À! Fun fact là **Discord** còn cung cấp các Quest riêng biệt cho một số quốc gia nữa đấy :D.
+
+Vậy làm thế nào để chúng ta có thể nhận Quest từ các quốc gia ấy nhỉ? 🤔
+
+### 1. Có sẵn phần mềm VPN/Fake IP
+
+Để nhận Quest của các quốc gia khác, theo logic đơn giản thì ta sẽ phải ở quốc gia đó rồi đúng không? Tuy nhiên vì đây Internet nên chúng ta có thể **"fake"** rằng bản thân đang ở quốc gia đấy 🐧. Để thực hiện được điều này, ta cần can thiệp vào **địa chỉ IP public**, cụ thể bạn sẽ phải sử dụng các **phần mềm VPN**.
+
+> **VPN (Virtual Private Network - mạng riêng ảo)** là công nghệ giúp tạo một đường truyền được mã hóa giữa thiết bị của bạn và Internet, qua đó tăng bảo mật, **"che địa chỉ IP thật"** và có thể giúp **"truy cập nội dung bị giới hạn theo khu vực"**. Các **phần mềm VPN** cho phép bạn làm điều đó một cách dễ dàng.
+
+Các phần mềm VPN phổ biến hiện nay gồm **NordVPN, ExpressVPN, Surfshark, Proton VPN** và **Urban VPN**. Trong đó NordVPN, ExpressVPN và Surfshark chủ yếu là dịch vụ trả phí, còn Proton VPN và Urban VPN có gói miễn phí.
+
+### 2. Xác định Quest riêng ở các quốc gia
+
+Vậy là bạn đã có một chiếc app VPN xịn xò 😎, thế nhưng bạn lại không biết ở quốc gia nào sẽ có Quest riêng?! Bạn tự hỏi mình sẽ xác định kiểu gì nhỉ? Chả nhẽ lại đi thử từng quốc gia một để check à... 😭
+
+Để giải quyết nhu cầu trên, bạn của chủ blog - **Bach Hummus** đã tạo ra một con bot dùng để tự động track các Quest mới ở tất cả các quốc gia. Quest ở quốc gia nào sẽ được thông báo định kì ở máy chủ Discord [**Vietnam 🇻🇳**](https://discord.gg/vietnam-1369110877231513771) (kênh `📬・track-nhiệm-vụ`).
+
+![Track Quests](./post-12.png)
+
+<iframe src="https://drive.google.com/file/d/1xc2gxh5ke-kOpmrlJyduPmOGhGP5UzqK/preview" class="w-full h-[500px]"></iframe>
+
+Việc còn lại là hoàn thành các Quest và nhận Orbs thôi. 🥰
+
+# Bounty (Discord Mobile)
+
+**Discord Bounty** nôm na là một dạng **nhiệm vụ quảng cáo** dành cho ứng dụng Discord trên điện thoại. Bạn phải xem các video quảng cáo được tài trợ để nhận được số lượng Orbs nhất định (hiện là **50 Orbs** mỗi nhiệm vụ). Các nhiệm vụ sẽ được cập nhật trong một khoảng thời gian ngắn, thường là **1-2 ngày**. Đây là một trong số cách mới để kiếm thêm Orbs gần đây 🤑🤑.
+
+> *Hiện không có cách nào để tự động hoàn thành các Quest này do khác biệt về API giữa Quest thường và Bounty.*
+
+![Bounty](./post-13.webp)
+
+# Kết bài
+
+Vậy là chúng ta đã đi qua kha khá cách để kiếm **Discord Orbs**: từ dùng script của **aamiaa** cho các Quest cơ bản, tận dụng **Equicord + Questify** để xử lý nhiều loại Quest tiện hơn, cho đến săn thêm nhiệm vụ theo khu vực bằng **VPN** và tranh thủ làm **Bounty** trên điện thoại. Tùy nhu cầu mà bạn có thể chọn cách phù hợp - không nhất thiết phải bật full combo đâu nhé :D.
+
+Dù Orbs và các món đồ trong Shop khá hấp dẫn (nhất là **Nitro** heheehehehhehehe), bạn vẫn nên nhớ rằng script, client mod hay việc thay đổi IP đều không phải tính năng chính thức được Discord bảo đảm an toàn. Đừng paste những đoạn code không rõ nguồn gốc, không chia sẻ token tài khoản và cũng đừng spam đổi VPN liên tục kẻo chưa kịp làm phú ông đã được Discord cho "nghỉ dưỡng" 😭.
+
+Hy vọng những mẹo trong bài sẽ giúp bạn tiết kiệm được kha khá thời gian và không bỏ lỡ các Quest ngon vờ lờ 🐧. Chúc các bạn cày Orbs vui vẻ, đổi được đúng món mình thích - và quan trọng nhất là **cày có chừng mực, an toàn là trên hết** nhé! 🥰
+

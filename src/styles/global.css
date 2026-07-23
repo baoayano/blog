@@ -63,6 +63,7 @@
         margin-top: 2rem;
         margin-bottom: 2rem;
         border-radius: 0.5rem;
+        box-shadow: 0 4px 30px #cc4f5940;
     }
 
     :not(pre) > code {
@@ -118,7 +119,7 @@
             align-items: center;
             gap: 0.75rem;
             padding: 0.575rem 0.875rem;
-            font-weight: 600;
+            font-weight: 500;
             line-height: 1.5;
             cursor: pointer;
             list-style: none;
@@ -189,6 +190,12 @@
     li ul {
         margin-left: 1rem;
     }
+
+    iframe {
+        border-radius: 2rem;
+        outline: none;
+        box-shadow: 0 4px 20px #bebebe40;
+    }
 }
 
 @media (max-width: 720px) {
@@ -256,7 +263,7 @@
     border-radius: 0.5rem;
     margin: 1.5rem 0;
     background-color: #f3f3f362!important;
-    font-size: 0.8rem;
+    font-size: 1rem;
 
     span {
         font-family: var(--font-code) !important;
