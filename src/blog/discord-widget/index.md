@@ -11,7 +11,7 @@ opengraph: /og_posts/cover_discord-widget.png
 
 Thời gian gần đây, Discord đã ra mắt tính năng Profile Widget, nhưng bạn không thể tùy chỉnh nó theo ý muốn mà phải phụ thuộc vào các ứng dụng và trò chơi được liên kết. Trong bài viết này, mình sẽ chia sẻ cách tạo một Profile Widget custom bằng cách tận dụng một số thủ thuật thú vị mà Discord hiện vẫn hỗ trợ.
 
-# Tạo Discord Application và Setup
+## Tạo Discord Application và Setup
 
 > ***(\*) Dành cho người lười:** Rút gọn các bước bên dưới bằng [Script của aamiaa](https://gist.github.com/aamiaa/7cdd590e3949cd654758bc90bcb4710b).*
 
@@ -43,7 +43,7 @@ findByProps("getAll").getAll().find(e=>e.getName() === "ApexExperimentStore").cr
 
 Sau khi sử dụng xong, hãy thoát ra vào lại application của bạn (sử dụng cái nút có mũi tên ở bên trên ấy, không phải tải lại trang đâu, bạn cực kì thông minh mà 😎). Sau khi vào lại application, bạn sẽ thấy ở mục **Games** xuất hiện thêm 2 tab: **Widget** và **Assets**. 
 
-# Tạo Widget của riêng bạn
+## Tạo Widget của riêng bạn
 
 Hãy click vào tab **Widget** và nhấn nút **Create Widget**. Sau đó, bạn sẽ được đưa đến cửa sổ **Widget Editor** với đầy đủ các chức năng. Mặc dù việc thiết kế khá đơn giản, tuy vậy vẫn còn một số điều mình cần giải thích để tránh gặp khó khăn trong quá trình thiết kế.
 
@@ -65,7 +65,7 @@ Ngược lại, nếu bạn có nhu cầu tùy chỉnh widget sao cho phù hợp
 
 Chà... Có vẻ mọi thứ ổn rồi nhỉ? Hãy nhấn vào nút **Save Changes** và **Publish** phía trên để lưu và xác nhận hiển thị toàn bộ mọi thứ.
 
-# Xác thực người dùng và hiển thị Widget
+## Xác thực người dùng và hiển thị Widget
 
 > *Yêu cầu bạn phải cài đặt [NodeJS](https://nodejs.org/en/download) trước khi thực hiện.*
 
@@ -225,7 +225,7 @@ Vậy là ngon rồi, bạn đã apply thành công widget lên tài khoản Dis
 
 ![Widget apply successfully](./post-8.png)
 
-# Khoan đã! Bạn tưởng đã xong rồi sao?
+## Khoan đã! Bạn tưởng đã xong rồi sao?
 
 Hmmm...? Vẫn chưa có widget trên profile à 🥀. À! Còn một bước cuối cùng để hiển thị widget trên profile của bạn đây!!
 

@@ -2,7 +2,7 @@
 title: Một số thủ thuật kiếm Orbs nhanh trên Discord
 description: Discord Orbs là đơn vị điểm thưởng có thể dùng để đổi vật phẩm và nhiều phần quà thú vị trong Shop. Trong bài viết này, mình sẽ chia sẻ một số cách giúp bạn kiếm Orbs nhanh hơn, tối ưu thời gian làm nhiệm vụ và tận dụng hiệu quả những chương trình thưởng mà Discord hiện đang cung cấp.
 pubDate: 2026-07-22
-updateDate: 2026-07-22
+updateDate: 2026-07-23
 cover: ./cover.png
 opengraph: /og_posts/cover_discord-quest-methods.png
 ---
@@ -22,7 +22,7 @@ Discord Orbs là đơn vị điểm thưởng có thể dùng để đổi vật
 </h4>
 
 <details>
-    <summary>Cách bật DevTools cho mấy con vợ trên Discord Stable :D</summary>
+    <summary>Cách bật DevTools trên Discord Stable</summary>
 <div>
 
 **Trên Windows:**
@@ -361,7 +361,7 @@ Vậy là bạn đã có một chiếc app VPN xịn xò 😎, thế nhưng bạ
 
 ![Track Quests](./post-12.png)
 
-<iframe src="https://drive.google.com/file/d/1xc2gxh5ke-kOpmrlJyduPmOGhGP5UzqK/preview" class="w-full h-[500px]"></iframe>
+<iframe src="https://drive.google.com/file/d/1xc2gxh5ke-kOpmrlJyduPmOGhGP5UzqK/preview" class="w-full h-[300px] md:h-[500px]"></iframe>
 
 Việc còn lại là hoàn thành các Quest và nhận Orbs thôi. 🥰
 

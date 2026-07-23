@@ -195,12 +195,18 @@
         border-radius: 2rem;
         outline: none;
         box-shadow: 0 4px 20px #bebebe40;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
     }
 }
 
 @media (max-width: 720px) {
     .prose {
-        font-size: 1rem;
+        font-size: 0.815rem;
+
+        h1, h2, h3, h4, h5, h6 {
+            margin-top: 1.5rem;
+        }
 
         h1 {
             font-size: 1.75rem;
@@ -217,16 +223,45 @@
             line-height: 1.75rem;
         }
 
+        h4 {
+            font-size: 1rem;
+            line-height: 1.5rem;
+        }
+
+        h4.title_stuff {
+            font-size: 0.875rem;
+            margin-top: 1.25rem;
+        }
+
+        details summary {
+            font-size: 14px;
+        }
+
         code {
             font-size: 0.875rem;
         }
 
         blockquote {
             padding-left: 0.75rem;
+            font-size: 0.875rem;
         }
 
         li ul {
             margin-left: 0.5rem;
+        }
+
+        h1 ~ h2, h2 ~ h3, h1 ~ h3 {
+            margin-top: 1rem;
+        }
+
+        p {
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        img, iframe {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
         }
     }
 }

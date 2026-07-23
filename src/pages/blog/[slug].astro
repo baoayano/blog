@@ -92,14 +92,14 @@ const { Content } = await render(post);
                             type="text"
                             name="name"
                             placeholder="Your name (Kimi no na wa 🤑)"
-                            class="w-full max-w-[300px] px-4 py-2 border border-[#ccc] dark:border-[#161616] rounded-md focus:outline-none focus:border-blue-700 dark:focus:border-blue-500 dark:text-white transition-colors duration-300"
+                            class="w-full max-w-[300px] text-sm sm:text-base px-4 py-2 border border-[#ccc] dark:border-[#161616] rounded-md focus:outline-none focus:border-blue-700 dark:focus:border-blue-500 dark:text-white transition-colors duration-300"
                             required
                         />
                         <!-- Comment -->
                         <textarea
                             name="comment"
                             placeholder="Write your comment here..."
-                            class="w-full p-4 border border-[#ccc] dark:border-[#161616] rounded-md focus:outline-none focus:border-blue-700 dark:focus:border-blue-500 dark:text-white transition-colors duration-300 resize-none"
+                            class="w-full text-sm sm:text-base p-4 border border-[#ccc] dark:border-[#161616] rounded-md focus:outline-none focus:border-blue-700 dark:focus:border-blue-500 dark:text-white transition-colors duration-300 resize-none"
                             rows="4"
                             required></textarea>
                         <!-- Turnstile -->
@@ -107,7 +107,7 @@ const { Content } = await render(post);
                         <button
                             id="submitButton"
                             type="submit"
-                            class="self-end px-4 py-2 bg-[#000000] dark:bg-[#ffffff] text-white dark:text-black rounded-md hover:opacity-80 transition-opacity duration-300 cursor-pointer"
+                            class="self-end text-sm sm:text-base px-4 py-2 bg-[#000000] dark:bg-[#ffffff] text-white dark:text-black rounded-md hover:opacity-80 transition-opacity duration-300 cursor-pointer"
                         >
                             Post
                         </button>
@@ -244,7 +244,7 @@ const { Content } = await render(post);
                         }
                     } else {
                         commentList.innerHTML =
-                            '<p id="noComments" class="opacity-80 text-center mt-12">No comments yet. Be the first to comment!</p>';
+                            '<p id="noComments" class="opacity-80 text-center mt-12 text-sm sm:text-base">No comments yet. Be the first to comment!</p>';
                     }
                 })
                 .catch((error) => {
@@ -259,7 +259,7 @@ const { Content } = await render(post);
             const button = document.createElement("button");
             button.textContent = text;
             button.className =
-                "px-4 py-2 bg-[#000000] dark:bg-[#ffffff] text-white dark:text-black rounded-md hover:opacity-80 transition-opacity duration-300 cursor-pointer";
+                "px-4 py-2 text-sm sm:text-base bg-[#000000] dark:bg-[#ffffff] text-white dark:text-black rounded-md hover:opacity-80 transition-opacity duration-300 cursor-pointer";
             button.addEventListener("click", onClick);
             return button;
         }
@@ -281,14 +281,14 @@ const { Content } = await render(post);
             const commentList = document.getElementById("commentsList");
             const commentDiv = document.createElement("div");
             commentDiv.className =
-                "mb-4 px-4 py-3 border border-[#eee] dark:border-[#181818] rounded-md comment-item";
+                "mb-4 px-4 py-3 text-sm sm:text-base border border-[#eee] dark:border-[#181818] rounded-md comment-item";
 
             const nameP = document.createElement("p");
             nameP.className = "font-semibold";
             nameP.textContent = comment.name;
 
             const dateP = document.createElement("p");
-            dateP.className = "text-sm opacity-80 mb-2";
+            dateP.className = "text-xs sm:text-sm opacity-80 mb-2";
             dateP.textContent = new Date(comment.createdAt).toLocaleString(
                 "en-US",
                 {

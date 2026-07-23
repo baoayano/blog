@@ -2,7 +2,7 @@
 title: Cách nhận VPS Linux 1 tháng miễn phí
 description: Trong quá trình phát triển khóa học DevOps, F8 đã hợp tác với InterData nhằm mang đến cho học viên cơ hội trải nghiệm môi trường máy chủ thực tế ngay trong quá trình học tập. Thông qua chương trình hợp tác này, mỗi học viên đủ điều kiện sẽ được nhận một VPS Linux miễn phí trong vòng 1 tháng để thực hành các kiến thức về Linux, Docker, CI/CD, triển khai ứng dụng và nhiều nội dung khác trong lộ trình DevOps. Trong bài viết này, mình sẽ hướng dẫn chi tiết cách đăng ký và nhận VPS Linux miễn phí từ F8, đồng thời chia sẻ một số lưu ý quan trọng để bạn có thể kích hoạt và sử dụng máy chủ một cách nhanh chóng, hiệu quả nhất.
 pubDate: 2026-06-26
-updateDate: 2026-06-26
+updateDate: 2026-07-23
 cover: ./cover.png
 opengraph: /og_posts/cover_free-vps.jpg
 ---
@@ -11,7 +11,7 @@ opengraph: /og_posts/cover_free-vps.jpg
 
 Trong quá trình phát triển khóa học **DevOps**, **F8** đã hợp tác với **InterData** nhằm mang đến cho học viên cơ hội trải nghiệm môi trường máy chủ thực tế ngay trong quá trình học tập. Thông qua chương trình hợp tác này, mỗi học viên đủ điều kiện sẽ được nhận một **VPS Linux miễn phí** trong vòng 1 tháng để thực hành các kiến thức về Linux, Docker, CI/CD, triển khai ứng dụng và nhiều nội dung khác trong lộ trình DevOps. Trong bài viết này, mình sẽ hướng dẫn chi tiết cách đăng ký và nhận VPS Linux miễn phí từ F8, đồng thời chia sẻ một số lưu ý quan trọng để bạn có thể kích hoạt và sử dụng máy chủ một cách nhanh chóng, hiệu quả nhất.
 
-# Đăng ký tài khoản InterData
+## Đăng ký tài khoản InterData
 
 Đầu tiên, bạn hãy tiến hành truy cập trang web của **InterData** bằng đường dẫn sau: [https://interdata.vn](https://interdata.vn).
 
@@ -25,7 +25,7 @@ Tại phần trang chủ, bạn hãy click vào nút **Đăng nhập**. Sau khi 
 
 Vậy là bạn đã đăng ký thành công tài khoản **InterData**, hãy chuyển sang bước tiếp theo.
 
-# Tiến hành nhận VPS miễn phí
+## Tiến hành nhận VPS miễn phí
 
 Tại trang **Client Area** (trang chuyển hướng sau khi bạn đăng ký tài khoản thành công), ở phần **Liên kết nhanh**, hãy click vào **Đăng ký dịch vụ**. Sau khi được chuyển đến trang đặt hàng, ở phần **Danh sách dịch vụ**, bạn hãy tìm và chọn **Hosting Sinh Viên**.
 
@@ -53,13 +53,13 @@ Vậy là bạn đã nhận thành công **VPS Linux 1 tháng** miễn phí! To�
 
 ![Order Complete](./post-9.png)
 
-# Đăng nhập vào VPS để sử dụng
+## Đăng nhập vào VPS để sử dụng
 
 Ơ? Phần này mà cũng cần được hướng dẫn à... 🥀
 
 Thôi thì, hãy chuyển sang post này để tìm hiểu nhé: [Hướng dẫn đăng nhập vào VPS Linux với giao thức SSH đơn giản](https://nhanhoa.com/tin-tuc/dang-nhap-vao-vps-linux.html).
 
-# Lời kết
+## Lời kết
 
 Toàn bộ hướng dẫn lần này đều lấy ý tưởng từ video khóa học DevOps của F8, mọi người có thể xem ở đây: [24. Hướng dẫn mua VPS miễn phí](https://www.youtube.com/watch?v=1g_KEYwjWRU).
 
