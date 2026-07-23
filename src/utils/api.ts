@@ -75,8 +75,7 @@ export async function handleVerification(data: { 'cf-turnstile-response': string
 */
 export async function rateLimiting(request: Request): Promise<boolean> {
     const ip = request.headers.get('x-forwarded-for') || request.headers.get('cf-connecting-ip') || '';
-    const isLocalhost = request.headers.get('host')?.includes('localhost') || request.headers.get('host')?.includes('127.0.0.1');
-    if (isLocalhost) return true; // Skip rate limiting for localhost
+    if (!import.meta.env.PROD) return true; // Skip rate limiting for localhost
     if (!ip) return false;
     
     const docRef = await db.collection('rateLimit').doc(ip).get();
