@@ -2,7 +2,7 @@
 title: Một số thủ thuật kiếm Orbs nhanh trên Discord
 description: Discord Orbs là đơn vị điểm thưởng có thể dùng để đổi vật phẩm và nhiều phần quà thú vị trong Shop. Trong bài viết này, mình sẽ chia sẻ một số cách giúp bạn kiếm Orbs nhanh hơn, tối ưu thời gian làm nhiệm vụ và tận dụng hiệu quả những chương trình thưởng mà Discord hiện đang cung cấp.
 pubDate: 2026-07-22
-updateDate: 2026-07-23
+updateDate: 2026-07-24
 cover: ./cover.png
 opengraph: /og_posts/cover_discord-quest-methods.png
 ---
@@ -326,6 +326,8 @@ Vào khu vực **Quest**, click vào nút **Complete** bất kì để tự đ�
 > **Lợi ích:**
 > - *Bạn có thể thực hiện nhiều Quest cùng một lúc, điều mà script của aamiaa không thể làm được.*
 > - *Các quest hiện nút **Complete Now** sẽ có thời gian hoàn thành gần như ngay lập tức.*
+>
+> **Lưu ý:** *Có một số trường hợp Quest không hiển thị nút Complete, hãy nhận nhiệm vụ, sau đó click vào icon 3 chấm ở góc trên bên phải Quest, chọn **Start Auto-Complete**.*
 
 ![Questify 4](./post-11.png)
 
@@ -338,8 +340,6 @@ Mình không khuyến khích các bạn thực hiện cách này (trừ khi chí
 *u know, người thông minh không ai giao credentials tài khoản cá nhân cho một bên không rõ nguồn gốc cả...* 😎
 
 ## Kiếm thêm nhiều Quest bằng VPN
-
-> *Cẩn thận bị ăn rate limit/temp ban đấy nhé mấy con vợ >.<*
 
 Hết Quest để làm rồi à... chán nhỉ? À! Fun fact là **Discord** còn cung cấp các Quest riêng biệt cho một số quốc gia nữa đấy :D.
 
@@ -364,6 +364,8 @@ Vậy là bạn đã có một chiếc app VPN xịn xò 😎, thế nhưng bạ
 <iframe src="https://drive.google.com/file/d/1xc2gxh5ke-kOpmrlJyduPmOGhGP5UzqK/preview" class="w-full h-[300px] md:h-[500px]"></iframe>
 
 Việc còn lại là hoàn thành các Quest và nhận Orbs thôi. 🥰
+
+> *Việc complete/claim hàng loạt quest có thể dẫn tới việc tài khoản bị Discord rate limit hoặc temp ban khỏi Quest. Vui lòng cân nhắc trước khi thực hiện!*
 
 # Bounty (Discord Mobile)
 
