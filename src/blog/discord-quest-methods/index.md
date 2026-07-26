@@ -2,7 +2,7 @@
 title: Một số thủ thuật kiếm Orbs nhanh trên Discord
 description: Discord Orbs là đơn vị điểm thưởng có thể dùng để đổi vật phẩm và nhiều phần quà thú vị trong Shop. Trong bài viết này, mình sẽ chia sẻ một số cách giúp bạn kiếm Orbs nhanh hơn, tối ưu thời gian làm nhiệm vụ và tận dụng hiệu quả những chương trình thưởng mà Discord hiện đang cung cấp.
 pubDate: 2026-07-22
-updateDate: 2026-07-24
+updateDate: 2026-07-26
 cover: ./cover.png
 opengraph: /og_posts/cover_discord-quest-methods.png
 ---
@@ -12,6 +12,10 @@ opengraph: /og_posts/cover_discord-quest-methods.png
 Discord Orbs là đơn vị điểm thưởng có thể dùng để đổi vật phẩm và nhiều phần quà thú vị trong Shop. Trong bài viết này, mình sẽ chia sẻ một số cách giúp bạn kiếm Orbs nhanh hơn, tối ưu thời gian làm nhiệm vụ và tận dụng hiệu quả những chương trình thưởng mà Discord hiện đang cung cấp.
 
 ## Công cụ tự động hoàn thành Quest (Auto Quest Completion)
+> ***Thông báo (26/07/2026):** Discord vừa có một bản cập nhật khiến cho toàn bộ các cách bên dưới không thể sử dụng được trong một số trường hợp, các client bị ảnh hưởng gồm **Discord PTB** và **Discord Canary**. Hiện script của aamiaa đã fix được trường hợp này nhưng bên Questify thì vẫn chưa ;-;. Hãy thường xuyên kiểm tra cập nhật của các cách trong thời gian tới hoặc tạm thời chuyển sang sử dụng client Discord thường.*
+>
+> ***(\*) Chi tiết tại [Equicord Server](https://equicord.org/discord):** [Questify failing to autocomplete on PTB with `taskConfigV2`](https://canary.discord.com/channels/1173279886065029291/1530254570180186163)*
+
 ### 1. Script của aamiaa (Cơ bản)
 
 Đây là một trong số những cách **Auto Quest Completion** phổ biến nhất nhưng cũng có một số hạn chế nhất định.
@@ -105,12 +109,12 @@ if(quests.length === 0) {
 
 		const pid = Math.floor(Math.random() * 30000) + 1000
 		
-		const applicationId = quest.config.application.id
-		const applicationName = quest.config.application.name
 		const questName = quest.config.messages.questName
 		const taskConfig = quest.config.taskConfig ?? quest.config.taskConfigV2
 		const taskName = supportedTasks.find(x => taskConfig.tasks[x] != null)
-		const secondsNeeded = taskConfig.tasks[taskName].target
+		const taskData = taskConfig.tasks[taskName]
+		const applicationId = taskData.applications[0].id
+		const secondsNeeded = taskData.target
 		let secondsDone = quest.userStatus?.progress?.[taskName]?.value ?? 0
 
 		if(taskName === "WATCH_VIDEO" || taskName === "WATCH_VIDEO_ON_MOBILE") {
@@ -185,7 +189,7 @@ if(quests.length === 0) {
 					}
 					FluxDispatcher.subscribe("QUESTS_SEND_HEARTBEAT_SUCCESS", fn)
 					
-					console.log(`Spoofed your game to ${applicationName}. Wait for ${Math.ceil((secondsNeeded - secondsDone) / 60)} more minutes.`)
+					console.log(`Spoofed your game to ${appData.name}. Wait for ${Math.ceil((secondsNeeded - secondsDone) / 60)} more minutes.`)
 				})
 			}
 		} else if(taskName === "STREAM_ON_DESKTOP") {
@@ -214,7 +218,7 @@ if(quests.length === 0) {
 				}
 				FluxDispatcher.subscribe("QUESTS_SEND_HEARTBEAT_SUCCESS", fn)
 				
-				console.log(`Spoofed your stream to ${applicationName}. Stream any window in vc for ${Math.ceil((secondsNeeded - secondsDone) / 60)} more minutes.`)
+				console.log(`Spoofed your stream to the target game. Stream any window in vc for ${Math.ceil((secondsNeeded - secondsDone) / 60)} more minutes.`)
 				console.log("Remember that you need at least 1 other person to be in the vc!")
 			}
 		} else if(taskName === "PLAY_ACTIVITY") {
