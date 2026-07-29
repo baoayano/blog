@@ -337,7 +337,71 @@ Vào khu vực **Quest**, click vào nút **Complete** bất kì để tự đ�
 
 Ngon, đỡ tốn thời gian 🗣️🔥🔥🔥🔥. Giờ đến mục tiếp theo thôi!
 
-### 3. Bot/Website hoàn thành Quest tự động (Rủi ro cao)
+### 3. Selfbot dành cho người lười (Nâng cao)
+
+Lười bỏ mẹ, suốt ngày bấm bấm mệt hết cả người. Giờ bạn chỉ muốn tự động hoàn thành tất cả mọi thứ chỉ trong một nút bấm, kể cả khi bạn đang trên điện thoại? 😪. Đừng lo, đã có một cách tuyệt vời dành cho bạn: **Selfbot**. 😎
+
+#### Giới thiệu chung
+
+Project **[Discord-Quest-Auto-Completion-Selfbot](https://github.com/aiko-chan-ai/Discord-Quest-Auto-Completion-Selfbot)** của **aiko-chan-ai** giúp bạn hoàn thành tất cả các quest chỉ bằng việc chạy workflow mỗi lần có quest mới (hoặc clone về tự chạy nếu muốn 🥰).
+
+Do đây là cách cho người lười nên mình cũng lười viết phần giới thiệu này lắm, ngắn gọn xúc tích thôi.
+
+#### Hướng dẫn chi tiết (cho GitHub Workflows)
+> *Toàn bộ credit của hình ảnh hướng dẫn bên dưới đều là từ project [Discord-Quest-Auto-Completion-Selfbot](https://github.com/aiko-chan-ai/Discord-Quest-Auto-Completion-Selfbot).*
+
+<h4 class="title_stuff">
+
+***Bước 0:** Tạo tài khoản **GitHub** (bro?).*
+</h4>
+
+Cái bước này mà cần mình hướng dẫn cặn kẽ nữa thì... hơi low-tech thật.
+
+> *Tự lên xem nhé: [Hướng Dẫn Tạo Tài Khoản Github | XoanDev](https://www.youtube.com/watch?v=xfFMCtoNDoU)*.
+
+Ok, giờ có tài khoản **Github** rồi chứ gì? Bước tiếp theo nào :3
+
+<h4 class="title_stuff">
+
+**Bước 1:** Fork repository về tài khoản GitHub.
+</h4>
+
+Truy cập đường dẫn sau để đến project: **[https://github.com/aiko-chan-ai/Discord-Quest-Auto-Completion-Selfbot](https://github.com/aiko-chan-ai/Discord-Quest-Auto-Completion-Selfbot)**.
+
+Sau khi truy cập xong, chú ý ở góc bên trái phía trên sẽ có nút **Fork**, nhấn vào.
+
+![Fork project](https://github.com/user-attachments/assets/a47e639c-6cef-474e-aa1e-01c5cdfb00ab)
+
+Bạn sẽ được chuyển tới giao diện tạo fork mới, nhấn nút **Create Fork**.
+
+![Create fork](https://github.com/user-attachments/assets/1599f2be-d556-4d83-a5b5-afe299eeee4f)
+
+Sau đó bạn sẽ được chuyển tới trang chứa repository đã fork của bạn, hãy lưu lại liên kết này ở đâu đó vì bạn sẽ cần dùng mỗi khi muốn chạy selfbot để hoàn thành quest.
+
+<h4 class="title_stuff">
+
+**Bước 2:** Lấy token tài khoản Discord.
+</h4>
+
+> *Nếu bạn chưa biết bật DevTools trên Discord App kiểu gì thì hãy xem lại [tại đây](#1-script-của-aamiaa-cơ-bản).*
+
+Bật DevTools trên Discord App lên, paste đoạn code sau:
+```js
+(w=webpackChunkdiscord_app).push([[Symbol()],{},o=>{try{Object.values(o.c).some(e=>e.exports?.setToken&&(w.t=e.exports.getToken()))}catch{}}]),w.t
+```
+
+Nó sẽ trả về cho bạn đống này (đừng share ai cả):
+
+![Token](./post-14.png)
+
+Đây là token đăng nhập tài khoản Discord của bạn, lưu lại ở đâu đó và sang bước tiếp theo 🥰.
+
+<h4 class="title_stuff">
+
+**Bước 3:** Cài đặt repository với token.
+</h4>
+
+### 4. Bot/Website không rõ nguồn gốc (Rủi ro cao)
 
 Mình không khuyến khích các bạn thực hiện cách này (trừ khi chính bạn là người viết bot/website). Bởi để **Discord Bot/Website** hoàn thành quest tự động, bạn sẽ phải gửi **token** tài khoản của bản thân. Việc này rất nguy hiểm bởi token gần như là **"chìa khóa đăng nhập"** vào tài khoản Discord của bạn. Nếu gửi token cho một bot hoặc website không đáng tin cậy, kẻ xấu có thể chiếm quyền tài khoản, đọc tin nhắn, gửi spam, tham gia máy chủ hoặc thực hiện các hành vi vi phạm thay bạn. Vì vậy, tuyệt đối không chia sẻ token cho bất kỳ ai.
 
