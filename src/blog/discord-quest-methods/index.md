@@ -12,9 +12,6 @@ opengraph: /og_posts/cover_discord-quest-methods.png
 Discord Orbs là đơn vị điểm thưởng có thể dùng để đổi vật phẩm và nhiều phần quà thú vị trong Shop. Trong bài viết này, mình sẽ chia sẻ một số cách giúp bạn kiếm Orbs nhanh hơn, tối ưu thời gian làm nhiệm vụ và tận dụng hiệu quả những chương trình thưởng mà Discord hiện đang cung cấp.
 
 ## Công cụ tự động hoàn thành Quest (Auto Quest Completion)
-> ***Thông báo (26/07/2026):** Discord vừa có một bản cập nhật khiến cho toàn bộ các cách bên dưới không thể sử dụng được trong một số trường hợp, các client bị ảnh hưởng gồm **Discord PTB** và **Discord Canary**. Hiện script của aamiaa đã fix được trường hợp này nhưng bên Questify thì vẫn chưa ;-;. Hãy thường xuyên kiểm tra cập nhật của các cách trong thời gian tới hoặc tạm thời chuyển sang sử dụng client Discord thường.*
->
-> ***(\*) Chi tiết tại [Equicord Server](https://equicord.org/discord):** [Questify failing to autocomplete on PTB with `taskConfigV2`](https://canary.discord.com/channels/1173279886065029291/1530254570180186163)*
 
 ### 1. Script của aamiaa (Cơ bản)
 

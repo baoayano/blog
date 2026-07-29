@@ -1,13 +1,13 @@
 ---
-title: Cách tạo Discord Custom Widget
+title: "[Outdated] Cách tạo Discord Custom Widget"
 description: Thời gian gần đây, Discord đã ra mắt tính năng Profile Widget, nhưng bạn không thể tùy chỉnh nó theo ý muốn mà phải phụ thuộc vào các ứng dụng và trò chơi được liên kết. Trong bài viết này, mình sẽ chia sẻ cách tạo một Profile Widget custom bằng cách tận dụng một số thủ thuật thú vị mà Discord hiện vẫn hỗ trợ.
 pubDate: 2026-06-01
-updateDate: 2026-07-22
+updateDate: 2026-07-29
 cover: ./cover.png
 opengraph: /og_posts/cover_discord-widget.png
 ---
 
-> ***Lưu ý:** Hướng dẫn này không phải cách tốt nhất nhưng vẫn có thể thực hiện.*
+> ***Cập nhật:** Hiện tại Discord Custom Widget đã không còn được hỗ trợ. Thay vào đó, Discord hiện đang làm việc cho tính năng tùy chỉnh Widget trực tiếp mà không cần đến Dev Portal (có thể sẽ cần Discord Nitro 🥀).*
 
 Thời gian gần đây, Discord đã ra mắt tính năng Profile Widget, nhưng bạn không thể tùy chỉnh nó theo ý muốn mà phải phụ thuộc vào các ứng dụng và trò chơi được liên kết. Trong bài viết này, mình sẽ chia sẻ cách tạo một Profile Widget custom bằng cách tận dụng một số thủ thuật thú vị mà Discord hiện vẫn hỗ trợ.
 
