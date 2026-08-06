@@ -4,13 +4,21 @@ import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 import vercel from "@astrojs/vercel";
 
+import sitemap from '@astrojs/sitemap';
+
 // https://astro.build/config
 export default defineConfig({
     site: "https://blog.shizuku.tech",
     vite: {
         plugins: [tailwindcss()],
     },
-    integrations: [icon()],
+    integrations: [icon(), sitemap({
+        namespaces: {
+            news: false,
+            video: false,
+            xhtml: false
+        },
+    })],
     markdown: {
         shikiConfig: {
             theme: "dracula",
