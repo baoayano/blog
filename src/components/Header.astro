@@ -2,7 +2,7 @@
 import { Icon } from "astro-icon/components";
 ---
 
-<div id="navigation">
+<header id="navigation">
     <div
         class="container mx-auto flex items-center justify-between px-3 py-3 lg:py-6"
     >
@@ -20,7 +20,7 @@ import { Icon } from "astro-icon/components";
         </div>
 
         <div class="ml-auto flex gap-x-4 items-center">
-            <a href="#" id="themeToggle">
+            <a href="#" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
                 <Icon
                     name="ri:sun-fill"
                     class="w-7 h-7 hidden"
@@ -34,7 +34,7 @@ import { Icon } from "astro-icon/components";
             </a>
         </div>
     </div>
-</div>
+</header>
 
 <script>
     const navigation = document.getElementById("navigation");
@@ -54,6 +54,9 @@ import { Icon } from "astro-icon/components";
         if (lightIcon && darkIcon) {
             lightIcon.classList.toggle("hidden", !isDark);
             darkIcon.classList.toggle("hidden", isDark);
+            // aria-label and title update
+            themeToggle?.setAttribute("aria-label", isDark ? "Switch to light theme" : "Switch to dark theme");
+            themeToggle?.setAttribute("title", isDark ? "Switch to light theme" : "Switch to dark theme");
         }
     };
 

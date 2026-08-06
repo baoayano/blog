@@ -56,5 +56,8 @@ export default defineConfig({
     image: {
         layout: "constrained",
         responsiveStyles: true
+    },
+    build: {
+        inlineStylesheets: "always",
     }
 });
