@@ -24,9 +24,8 @@ export const POST: APIRoute = async ({ request }: APIContext) => {
         const data = await request.json();
 
         const isHuman = await handleVerification(data);
-        if (!isHuman) {
-            return responseWithError('Unauthorized', 400);
-        }
+        if (!isHuman)
+            return responseWithError('prove u are human please', 400);
 
         const { postId, name, comment } = data;
         const formattedFormData = {
@@ -37,36 +36,41 @@ export const POST: APIRoute = async ({ request }: APIContext) => {
 
         const postList: Blog[] = await getPostList();
 
-        if (!formattedFormData.postId || !formattedFormData.name || !formattedFormData.comment) {
-            return responseWithError('Missing required fields', 400);
-        }
+        if (!formattedFormData.postId || !formattedFormData.name || !formattedFormData.comment)
+            return responseWithError('fill all please!!!!', 400);
 
-        if (!postList.some(post => post.id === formattedFormData.postId)) {
-            return responseWithError('Invalid post ID', 400);
-        }
+        if (!postList.some(post => post.id === formattedFormData.postId))
+            return responseWithError('u trying to nuke my database leh?', 400);
 
-        if (formattedFormData.name.length < 3 || formattedFormData.name.length > 50) {
-            return responseWithError('Name is too short or too long', 400);
-        }
+        if (formattedFormData.name.length < 3)
+            return responseWithError('can you write a longer name pls', 400);
 
-        if (formattedFormData.comment.length < 2 || formattedFormData.comment.length > 500) {
-            return responseWithError('Comment is too short or too long', 400);
-        }
+        if (formattedFormData.name.length > 50)
+            return responseWithError('wow, what a crazy name :aiosima:', 400);
+
+        if (formattedFormData.comment.length < 2)
+            return responseWithError('too short, write more xD', 400);
+
+        if (formattedFormData.comment.length > 250)
+            return responseWithError('wtf is wrong with ur comment :sob:', 400);
 
         const isAllowed = await rateLimiting(request);
         if (!isAllowed) {
-            return responseWithError('Rate limit exceeded. Please wait before posting again.', 429);
+            return responseWithError(
+                'bro gonna nuke the comment section by spamming api lolololol'
+            , 429);
         }
 
         const isSaved = await saveCommentToFirestore(formattedFormData);
         if (!isSaved) {
-            return responseWithError('Failed to save comment', 500);
+            return responseWithError(
+                'ummm there\'s an error while i try to save ur comment, try again later'
+            , 500);
         }
 
-        // Process the comment data here
-        return responseWithError('Comment posted successfully!', 200);
+        return responseWithError('comment failed to post (jk)', 200);
     } catch (error) {
         console.error('Error processing comment:', error);
-        return responseWithError('Invalid JSON data', 400);
+        return responseWithError('crazy error happened, contact me to report it', 400);
     }
 }
