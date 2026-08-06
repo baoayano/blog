@@ -7,9 +7,18 @@ cover: ./cover.png
 opengraph: /og_posts/cover_discord-widget.png
 ---
 
+import { Image } from 'astro:assets';
+import firstImage from './cover.png'
+
 > ***Cập nhật:** Hiện tại Discord Custom Widget đã không còn được hỗ trợ. Thay vào đó, Discord hiện đang làm việc cho tính năng tùy chỉnh Widget trực tiếp mà không cần đến Dev Portal (có thể sẽ cần Discord Nitro 🥀).*
 
 Thời gian gần đây, Discord đã ra mắt tính năng Profile Widget, nhưng bạn không thể tùy chỉnh nó theo ý muốn mà phải phụ thuộc vào các ứng dụng và trò chơi được liên kết. Trong bài viết này, mình sẽ chia sẻ cách tạo một Profile Widget custom bằng cách tận dụng một số thủ thuật thú vị mà Discord hiện vẫn hỗ trợ.
+
+<Image
+	src={firstImage}
+	alt="Cover"
+	priority
+/>
 
 ## Tạo Discord Application và Setup
 
@@ -258,13 +267,13 @@ Thay chữ `client id` ở dưới cùng thành **Client ID** application của 
 
 ![Widget apply successfully](./post-9.png)
 
-Eheh, giờ bạn đã biết cách tạo Custom Widget rồi đấy! Chia sẻ rộng rãi để mọi người cùng biết nhé >.<
+Eheh, giờ bạn đã biết cách tạo Custom Widget rồi đấy! Chia sẻ rộng rãi để mọi người cùng biết nhé \>.\<
 
 ## Kết bài
 Một số code được cung cấp bởi **@bachhummus**, cảm ơn anh ấy đã contribute rất nhiều cho bài viết 😁.
 
 Nhớ đọc phần lưu ý trước khi thực hiện nhé!
 
-Cảm ơn mọi người đã đọc, chúc mọi người thực hiện thành công <3
+Cảm ơn mọi người đã đọc, chúc mọi người thực hiện thành công \<3
 
 ***(\*) Thông tin bổ sung:** Từ ngày 05/06/2026, bạn không thể áp dụng widget trên application của bản thân lên user khác.*

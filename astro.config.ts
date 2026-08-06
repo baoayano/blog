@@ -6,6 +6,8 @@ import vercel from "@astrojs/vercel";
 
 import sitemap from '@astrojs/sitemap';
 
+import mdx from '@astrojs/mdx';
+
 // https://astro.build/config
 export default defineConfig({
     site: "https://blog.shizuku.tech",
@@ -18,7 +20,7 @@ export default defineConfig({
             video: false,
             xhtml: false
         },
-    })],
+    }), mdx()],
     markdown: {
         shikiConfig: {
             theme: "dracula",
@@ -45,4 +47,8 @@ export default defineConfig({
         }
     ],
     adapter: vercel(),
+    image: {
+        layout: "constrained",
+        responsiveStyles: true
+    }
 });
