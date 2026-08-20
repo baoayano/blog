@@ -1,7 +1,6 @@
 ---
 // Importing necessary components and functions
 import Layout from "../layouts/Layout.astro";
-import Footer from "../components/Footer.astro";
 import { Icon } from "astro-icon/components";
 import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
@@ -93,5 +92,3 @@ posts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDat
 			}
 		</div>
 </Layout>
-
-<Footer />

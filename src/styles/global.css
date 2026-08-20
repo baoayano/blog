@@ -10,12 +10,19 @@
 .prose {
     font-size: 1.075rem;
 
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
         font-weight: 600;
         margin-top: 2.5rem;
     }
 
-    h1 ~ h2, h2 ~ h3, h1 ~ h3 {
+    h1~h2,
+    h2~h3,
+    h1~h3 {
         margin-top: 1.5rem;
     }
 
@@ -66,7 +73,7 @@
         box-shadow: 0 4px 30px #cc4f5940;
     }
 
-    :not(pre) > code {
+    :not(pre)>code {
         font-family: var(--font-code) !important;
         background-color: #f3f3f362;
         border: 1px solid #e2e2e2;
@@ -170,7 +177,7 @@
             margin-left: 1rem;
         }
 
-        > summary + * {
+        >summary+* {
             margin-top: 1rem;
 
             p:first-child {
@@ -205,7 +212,12 @@
         font-size: 1rem;
         line-height: 1.5;
 
-        h1, h2, h3, h4, h5, h6 {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
             margin-top: 1.5rem;
             text-wrap: balance;
         }
@@ -255,7 +267,9 @@
             margin-left: 0.5rem;
         }
 
-        h1 ~ h2, h2 ~ h3, h1 ~ h3 {
+        h1~h2,
+        h2~h3,
+        h1~h3 {
             margin-top: 1rem;
         }
 
@@ -264,14 +278,15 @@
             margin-bottom: 0.875rem;
         }
 
-        img, iframe {
+        img,
+        iframe {
             margin-top: 1.5rem;
             margin-bottom: 1.5rem;
         }
     }
 }
 
-.dark :not(pre) > code {
+.dark :not(pre)>code {
     background-color: #111111;
     border: 1px solid #1a1a1a;
 }
@@ -302,7 +317,7 @@
     padding: 1rem;
     border-radius: 0.5rem;
     margin: 1.5rem 0;
-    background-color: #f3f3f362!important;
+    background-color: #f3f3f362 !important;
     font-size: 1rem;
 
     span {
@@ -310,9 +325,46 @@
     }
 }
 
+code.colored-output {
+    color: #cdd6f4!important;
+    font-family: var(--font-code) !important;
+
+    .output-red {
+        color: #f38ba8!important;
+    }
+
+    .output-green {
+        color: #a6e3a1!important;
+    }
+
+    .output-yellow {
+        color: #f9e2af!important;
+    }
+
+    .output-blue {
+        color: #89b4fa!important;
+    }
+
+    .output-cyan {
+        color: #94e2d5!important;
+    }
+
+    .output-purple {
+        color: #cba6f7!important;
+    }
+
+    .output-gray {
+        color: #6c7081!important;
+    }
+
+    .output-orange {
+        color: #f5a97f!important;
+    }
+}
+
 .dark {
     .astro-code,
-    .astro-code span {
+    .astro-code :not(.colored-output) span {
         color: var(--shiki-dark) !important;
         background-color: #111111 !important;
         /* Optional, if you also want font styles */

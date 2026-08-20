@@ -3,10 +3,13 @@ import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from "@tailwindcss/vite";
 import icon from "astro-icon";
 import vercel from "@astrojs/vercel";
+import { unified } from "@astrojs/markdown-remark";
 
 import sitemap from '@astrojs/sitemap';
 
 import mdx from '@astrojs/mdx';
+
+import rehypeOutputColors from "./src/utils/rehype-output-colors.mjs"
 
 // https://astro.build/config
 export default defineConfig({
@@ -28,7 +31,16 @@ export default defineConfig({
                 light: "github-light",
                 dark: "github-dark",
             }
-        }
+        },
+        syntaxHighlight: {
+            type: "shiki",
+            excludeLangs: ["output"],
+        },
+        processor: unified({
+            rehypePlugins: [
+                rehypeOutputColors
+            ]
+        })
     },
     fonts: [
         {

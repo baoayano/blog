@@ -3,6 +3,7 @@
 import "../styles/global.css";
 import { Font } from "astro:assets";
 import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
 // Type definition for layout props
 import type { Props } from "../utils/interface";
@@ -136,6 +137,7 @@ const structuredData =
 		<main class="container mx-auto px-3">
 			<slot />
 		</main>
+		<Footer />
 	</body>
 </html>
 
