@@ -13,7 +13,8 @@ const blog = defineCollection({
         pubDate: z.coerce.date(),
         updateDate: z.coerce.date().optional(),
         cover: image(),
-        opengraph: z.string().optional()
+        opengraph: z.string().optional(),
+        lang: z.enum(['vi', 'en']).optional()
     })
 })
 

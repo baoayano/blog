@@ -4,6 +4,8 @@ export interface Props {
 	title?: string;
 	description?: string;
 	image?: string;
+	alternateHref?: string;
+	lang?: Language;
 
 	/**
 	 * Custom canonical URL.
@@ -30,6 +32,8 @@ export interface Props {
 	publishedTime?: string;
 	modifiedTime?: string;
 }
+
+export type Language = "vi" | "en";
 
 export interface Comment {
 	name: string;

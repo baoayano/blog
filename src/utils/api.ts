@@ -1,6 +1,6 @@
 // Import necessary types and functions
 import { db } from '../lib/firebase-admin';
-import { getCollection } from "astro:content";
+import { getCollection, type CollectionEntry } from "astro:content";
 
 // Import necessary types
 import type { DocumentData } from "firebase-admin/firestore";

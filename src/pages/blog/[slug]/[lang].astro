@@ -1,0 +1,32 @@
+---
+// English blog posts
+import { getLocalizedPosts, type LocalizedPost } from "../../../utils/posts";
+import BlogPost from '../../../components/BlogPost.astro';
+
+export async function getStaticPaths() {
+    const posts = await getLocalizedPosts();
+
+    return posts.flatMap((post: LocalizedPost) => {
+        if (!post.en) return [];
+        return [
+            {
+                params: { slug: post.slug, lang: 'en' },
+                props: {
+                    post: post.en,
+                    slug: post.slug,
+                    alternateHref: post.en ? `/blog/${post.slug}` : undefined,
+                },
+            }
+        ]
+    });
+}
+
+const { post, slug, alternateHref } = Astro.props;
+---
+
+<BlogPost
+    post={post}
+    lang="en"
+    slug={slug}
+    alternateHref={alternateHref}
+/>

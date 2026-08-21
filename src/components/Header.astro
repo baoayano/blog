@@ -1,5 +1,13 @@
 ---
 import { Icon } from "astro-icon/components";
+
+interface Props {
+    pageLang: "vi" | "en";
+    alternateHref?: string;
+    isArticle?: boolean;
+}
+
+const { pageLang, alternateHref, isArticle } = Astro.props as Props;
 ---
 
 <header id="navigation">
@@ -20,6 +28,27 @@ import { Icon } from "astro-icon/components";
         </div>
 
         <div class="ml-auto flex gap-x-4 items-center">
+            <a
+                href={alternateHref ?? "#"}
+                id="langSwitch"
+                aria-label="Switch language"
+                title="Switch language"
+                data-page-lang={isArticle ? pageLang : undefined}
+                data-alternate-href={alternateHref}
+            >
+                <!-- Vietnam Language Icon -->
+                <Icon
+                    name="twemoji:flag-vietnam"
+                    class="w-7 h-7 hidden"
+                    id="vi-icon"
+                    />
+                <!-- English Language Icon -->
+                <Icon
+                    name="twemoji:flag-united-states"
+                    class="w-7 h-7 hidden"
+                    id="en-icon"
+                />
+            </a>
             <a href="#" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">
                 <Icon
                     name="ri:sun-fill"
@@ -46,9 +75,56 @@ import { Icon } from "astro-icon/components";
         ? navigationEntry.responseStatus
         : "Unknown";
 
+    // Theme toggle elements
     const themeToggle = document.getElementById("themeToggle");
     const lightIcon = document.getElementById("light-icon");
     const darkIcon = document.getElementById("dark-icon");
+
+    // Language switch elements
+    const langSwitch = document.getElementById("langSwitch");
+    const viIcon = document.getElementById("vi-icon");
+    const enIcon = document.getElementById("en-icon");
+
+    function applyLanguage(language: "vi" | "en") {
+		document.documentElement.lang = language;
+		document.documentElement.dataset.language = language;
+
+		document.querySelectorAll(".blog-post").forEach((post) => {
+			const title = post.getAttribute(`data-title-${language}`);
+			const description = post.getAttribute(`data-description-${language}`);
+            const noEnglishBadge = post.querySelector("[data-no-english]");
+            const href = post.getAttribute("href");
+            const hrefEn = post.getAttribute("data-href-en");
+
+			if (title) {
+				const postTitle = post.querySelector("[data-post-title]");
+				if (postTitle) {
+					postTitle.textContent = title;
+				}
+			}
+
+			if (description) {
+				const postDescription = post.querySelector("[data-post-description]");
+				if (postDescription) {
+                    const maxLength = 300;
+                    const truncatedDescription = description.length > maxLength
+                        ? description.slice(0, maxLength) + "..."
+                        : description;
+					postDescription.textContent = truncatedDescription;
+				}
+			}
+
+            if (href) {
+                post.setAttribute("href", language === "en" ? (hrefEn || href) : href.replace(/\/en$/, ""));
+            }
+
+            if (language === "en" && noEnglishBadge) {
+                noEnglishBadge.classList.remove("hidden");
+            } else if (language === "vi" && noEnglishBadge) {
+                noEnglishBadge.classList.add("hidden");
+            }
+		});
+	}
 
     const updateThemeIcons = (isDark: boolean) => {
         if (lightIcon && darkIcon) {
@@ -60,6 +136,16 @@ import { Icon } from "astro-icon/components";
         }
     };
 
+    const updateLanguageIcons = (lang: string) => {
+        if (viIcon && enIcon) {
+            viIcon.classList.toggle("hidden", lang !== "vi");
+            enIcon.classList.toggle("hidden", lang !== "en");
+            // aria-label and title update
+            langSwitch?.setAttribute("aria-label", lang === "vi" ? "Switch to English" : "Switch to Vietnamese");
+            langSwitch?.setAttribute("title", lang === "vi" ? "Switch to English" : "Switch to Vietnamese");
+        }
+    };
+
     themeToggle?.addEventListener("click", (event) => {
         event.preventDefault();
         const isDark = document.documentElement.classList.toggle("dark");
@@ -67,8 +153,42 @@ import { Icon } from "astro-icon/components";
         updateThemeIcons(isDark);
     });
 
+    langSwitch?.addEventListener("click", (event) => {
+        event.preventDefault();
+        const pageLang = langSwitch?.getAttribute("data-page-lang") as "vi" | "en" | undefined;
+        const alternateHref = langSwitch?.getAttribute("data-alternate-href");
+
+        if (pageLang && alternateHref) {
+            const newLang = pageLang === "en" ? "vi" : "en";
+            localStorage.setItem("lang", newLang);
+            window.location.assign(alternateHref);
+            return;
+        }
+
+        if (pageLang) {
+            return;
+        }
+
+        const currentPreference = localStorage.getItem("lang") === "en" ? "en" : "vi";
+        const newLang = currentPreference === "en" ? "vi" : "en";
+
+        localStorage.setItem("lang", newLang);
+        updateLanguageIcons(newLang);
+        applyLanguage(newLang);
+    });
+
     const initialTheme = localStorage.getItem("theme") || "dark";
     updateThemeIcons(initialTheme === "dark");
+
+    const pageLang = langSwitch?.getAttribute("data-page-lang") as "vi" | "en";
+    if (pageLang) {
+        updateLanguageIcons(pageLang);
+        applyLanguage(pageLang);
+    } else {
+        const initialLang = localStorage.getItem("lang") === "en" ? "en" : "vi";
+        updateLanguageIcons(initialLang);
+        applyLanguage(initialLang as "vi" | "en");
+    }
 
     const updateNavigation = () => {
         if (!navigation) return;

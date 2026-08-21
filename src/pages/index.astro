@@ -2,15 +2,14 @@
 // Importing necessary components and functions
 import Layout from "../layouts/Layout.astro";
 import { Icon } from "astro-icon/components";
-import { getCollection } from "astro:content";
 import { Image } from "astro:assets";
+import { getLocalizedPosts } from "../utils/posts";
 
 // Type definition for blog posts
-import type { Blog } from "../utils/interface";
+import type { LocalizedPost } from "../utils/posts";
 
 // Fetching blog posts and sorting them by publication date
-const posts = await getCollection("blog");
-posts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+const posts = await getLocalizedPosts();
 ---
 
 <Layout
@@ -64,28 +63,44 @@ posts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDat
 		<h2 class="text-2xl lg:text-3xl font-semibold mb-6">Recent Posts</h2>
 		<div class="grid gap-6 md:grid-cols-2">
 			{
-				posts.slice(0, 4).map((post: Blog) => (
-					<a href={`/blog/${post.id}`} class="block group">
+				posts.slice(0, 4).map((post: LocalizedPost) => (
+					<a
+						href={`/blog/${post.slug}`}
+						class="blog-post block group relative"
+						data-title-vi={post.vi.data.title}
+						data-title-en={post.en?.data.title ?? post.vi.data.title}
+						data-has-english={String(Boolean(post.en))}
+						data-href-en={post.en ? `/blog/${post.slug}/en` : `/blog/${post.slug}`}
+					>
 						<div class="overflow-hidden rounded-lg w-full h-[230px]">
 							<Image
-								src={post.data.cover}
+								src={post.vi.data.cover}
 								alt="Post Cover"
 								class="!w-full !h-full object-cover rounded-lg group-hover:scale-110 transition-transform duration-300"
 								priority
 							/>
 						</div>
 						<div>
-							<h3 class="text-xl font-semibold mt-4 group-hover:underline">
-								{post.data.title}
+							<h3 class="text-xl font-semibold mt-4 group-hover:underline" data-post-title>
+								{post.vi.data.title}
 							</h3>
-							<p class="text-sm opacity-80 mt-1">
+							<p class="text-sm opacity-80 mt-1" data-post-description>
 								Published on{" "}
-								{new Date(post.data.pubDate).toLocaleDateString("en-US", {
+								{new Date(post.vi.data.pubDate).toLocaleDateString("en-US", {
 									year: "numeric",
 									month: "long",
 									day: "numeric",
 								})}
 							</p>
+
+							{
+								// No English version badge
+								!post.en && (
+									<span data-no-english class="absolute top-0 right-0 bg-[#333] text-white text-xs px-2 py-1 rounded-bl-lg rounded-tr-lg opacity-80 backdrop-blur-lg">
+										Vietnamese Only
+									</span>
+								)
+							}
 						</div>
 					</a>
 				))

@@ -1,0 +1,320 @@
+---
+// Importing necessary components and functions
+import Layout from "../layouts/Layout.astro";
+import Bar from "./Bar.astro";
+import { Icon } from "astro-icon/components";
+import { render } from "astro:content";
+
+import type { Blog } from "../utils/interface";
+
+interface Props {
+    post: Blog,
+    slug: string,
+    lang: "vi" | "en",
+    alternateHref?: string
+}
+
+const { post, slug, lang, alternateHref } = Astro.props as Props;
+
+// Variable for Turnstile site key from environment variables
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+
+const { Content } = await render(post);
+
+const publishedTime = post.data.pubDate.toISOString();
+
+const modifiedTime = (
+	post.data.updateDate ?? post.data.pubDate
+).toISOString();
+---
+
+<Layout
+    title={post.data.title}
+    description={post.data.description}
+    image={post.data.opengraph}
+    type="article"
+    publishedTime={publishedTime}
+    modifiedTime={modifiedTime}
+    alternateHref={alternateHref}
+    lang={lang}
+>
+    <!-- Progress Bar for read progress -->
+    <Bar />
+    <article class="py-12">
+        <a
+            href="/blog"
+            class="text-sm md:text-base opacity-80 hover:opacity-100 transition-opacity mb-6 inline-flex items-center gap-x-1"
+        >
+            <!-- arrow left icon -->
+            <Icon name="mdi:chevron-left" class="w-6 h-6 inline-block" />
+            Back to Posts
+        </a>
+
+        <h1 class="text-3xl lg:text-4xl font-bold mb-6">{post.data.title}</h1>
+        <p class="text-sm md:text-base opacity-80 mb-8">
+            Published on {
+                new Date(post.data.pubDate).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                })
+            }
+            <span class="mx-1">|</span>
+            Last updated on {
+                new Date(
+                    post.data.updateDate ?? post.data.pubDate,
+                ).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                })
+            }
+        </p>
+        <div class="prose dark:prose-invert max-w-none">
+            <Content />
+        </div>
+
+        <!-- Comment section -->
+        <div class="h-[1px] my-12 bg-[#eee] dark:bg-[#181818]"></div>
+        <div class="mt-12">
+            <h2 class="text-2xl font-bold mb-4">Comments</h2>
+            <div id="comment-section" class="mt-4">
+                <!-- Comment form will be rendered here -->
+                <div class="mb-6">
+                    <form id="commentForm" class="flex flex-col gap-y-4">
+                        <!-- Post ID -->
+                        <input type="hidden" name="postId" value={slug} />
+                        <!-- Name -->
+                        <input
+                            type="text"
+                            name="name"
+                            placeholder="Your name (Required)"
+                            class="w-full max-w-[300px] text-sm sm:text-base px-4 py-2 border border-[#ccc] dark:border-[#161616] rounded-md focus:outline-none focus:border-blue-700 dark:focus:border-blue-500 dark:text-white transition-colors duration-300"
+                            required
+                        />
+                        <!-- Comment -->
+                        <textarea
+                            name="comment"
+                            placeholder="Write your comment here... (or yapping bullshit, i don't care 🥀)"
+                            class="w-full text-sm sm:text-base p-4 border border-[#ccc] dark:border-[#161616] rounded-md focus:outline-none focus:border-blue-700 dark:focus:border-blue-500 dark:text-white transition-colors duration-300 resize-none"
+                            rows="4"
+                            required></textarea>
+                        <!-- Turnstile -->
+                        {
+                            siteKey ?
+                                <div class="cf-turnstile" data-sitekey={siteKey}></div> :
+                                <p class="text-sm text-red-500">You can't submit comments in this blog right now, please contact the administrator.</p>
+                        }
+                        <button
+                            id="submitButton"
+                            type="submit"
+                            class="self-end text-sm sm:text-base px-4 py-2 bg-[#000000] dark:bg-[#ffffff] text-white dark:text-black rounded-md hover:opacity-80 transition-opacity duration-300 cursor-pointer"
+                        >
+                            Post
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Comments will be displayed here -->
+                <input type="hidden" id="showAll" value="false" />
+                <div id="commentsList" class="mt-6"></div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Turnstile -->
+    {
+        siteKey && (
+            <script
+                src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+                async
+                defer
+            ></script>
+        )
+    }
+
+    <script>
+        import { getCopyIconSvg } from "../utils/icon";
+        import type { Comment } from "../utils/interface";
+        const codeBlocks = document.querySelectorAll(".astro-code");
+        const commentForm = document.getElementById(
+            "commentForm",
+        ) as HTMLFormElement | null;
+        const postId = (
+            document.querySelector('input[name="postId"]') as HTMLInputElement
+        )?.value;
+
+        codeBlocks.forEach((codeBlock) => {
+            const wrapper = document.createElement("div");
+            wrapper.className = "relative group";
+
+            codeBlock.parentNode?.insertBefore(wrapper, codeBlock);
+            wrapper.appendChild(codeBlock);
+
+            const copyButton = document.createElement("button");
+            copyButton.className =
+                "absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity text-white p-1 rounded text-sm cursor-pointer";
+
+            copyButton.innerHTML = getCopyIconSvg();
+
+            copyButton.addEventListener("click", () => {
+                navigator.clipboard.writeText(codeBlock.textContent ?? "");
+            });
+
+            wrapper.appendChild(copyButton);
+        });
+
+        commentForm?.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(commentForm);
+            const data = Object.fromEntries(formData.entries());
+
+            const submitButton = document.getElementById("submitButton") as HTMLButtonElement;
+            toggleButton(submitButton, false, "Sending...");
+
+            try {
+                const response = await fetch("/api/comment", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+                if (response.ok) {
+                    createCommentElement({
+                        name: data.name as string,
+                        postId: data.postId as string,
+                        comment: data.comment as string,
+                        createdAt: Date.now(),
+                    }, true);
+
+                    const commentItems = document.querySelectorAll(".comment-item");
+                    const showAllInput = document.getElementById("showAll") as HTMLInputElement;
+                    const noComments = document.getElementById("noComments");
+
+                    if (noComments) {
+                        noComments.remove();
+                    }
+
+                    if (showAllInput.value === "false" && commentItems.length > 5) {
+                        commentItems[commentItems.length - 1].remove();
+                    }
+
+                    commentForm.reset();
+                } else {
+                    alert(`Error: ${result.message}`);
+                }
+
+                window.turnstile.reset();
+                toggleButton(submitButton, true, "Post");
+            } catch (error) {
+                console.error("Error submitting comment:", error);
+            }
+        });
+
+        window.addEventListener("load", () => {
+            const commentList = document.getElementById("commentsList");
+            if (!commentList) return;
+            fetch(`/api/view?postId=${postId}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    if (data.comments && data.comments.length > 0) {
+                        data.comments.map((comment: Comment) =>
+                            createCommentElement(comment),
+                        );
+
+                        if (data.comments.length === 5) {
+                            const button = createButton("View More", () => {
+                                toggleButton(button, false, "Loading...");
+
+                                fetch(`/api/view?postId=${postId}&showAll=true`)
+                                    .then((response) => response.json())
+                                    .then((data) => {
+                                        data.comments.map((comment: Comment) =>
+                                            createCommentElement(comment),
+                                        );
+
+                                        button.remove();
+                                        document.getElementById("showAll")?.setAttribute("value", "true");
+                                    }).catch((error) => {
+                                        console.error("Error fetching more comments:", error);
+                                        toggleButton(button, true, "View More");
+                                    });
+                            });
+                            commentList.appendChild(button);
+                        } else {
+                            document.getElementById("showAll")?.setAttribute("value", "true");
+                        }
+                    } else {
+                        commentList.innerHTML =
+                            '<p id="noComments" class="opacity-80 text-center mt-12 text-sm sm:text-base">No comments yet. Be the first to comment!</p>';
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error fetching comments:", error);
+                });
+        }, { once: true });
+
+        function createButton(
+            text: string,
+            onClick: () => void,
+        ): HTMLButtonElement {
+            const button = document.createElement("button");
+            button.textContent = text;
+            button.className =
+                "px-4 py-2 text-sm sm:text-base bg-[#000000] dark:bg-[#ffffff] text-white dark:text-black rounded-md hover:opacity-80 transition-opacity duration-300 cursor-pointer";
+            button.addEventListener("click", onClick);
+            return button;
+        }
+
+        function toggleButton(button: HTMLButtonElement, isEnabled: boolean, text?: string) {
+            button.disabled = !isEnabled;
+            if (isEnabled) {
+                button.classList.remove("opacity-50", "cursor-not-allowed");
+                button.classList.add("opacity-100", "cursor-pointer");
+                button.textContent = text || button.textContent;
+            } else {
+                button.classList.add("opacity-50", "cursor-not-allowed");
+                button.classList.remove("opacity-100", "cursor-pointer");
+                button.textContent = text || button.textContent;
+            }
+        }
+
+        function createCommentElement(comment: Comment, isNew: boolean = false): HTMLDivElement {
+            const commentList = document.getElementById("commentsList");
+            const commentDiv = document.createElement("div");
+            commentDiv.className =
+                "mb-4 px-4 py-3 text-sm sm:text-base border border-[#eee] dark:border-[#181818] rounded-md comment-item";
+
+            const nameP = document.createElement("p");
+            nameP.className = "font-semibold";
+            nameP.textContent = comment.name;
+
+            const dateP = document.createElement("p");
+            dateP.className = "text-xs sm:text-sm opacity-80 mb-2";
+            dateP.textContent = new Date(comment.createdAt).toLocaleString(
+                "en-US",
+                {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    hour: "2-digit",
+                    minute: "2-digit",
+                },
+            );
+
+            const commentP = document.createElement("p");
+            commentP.textContent = comment.comment;
+
+            commentDiv.appendChild(nameP);
+            commentDiv.appendChild(dateP);
+            commentDiv.appendChild(commentP);
+            isNew ? commentList?.prepend(commentDiv) : commentList?.appendChild(commentDiv);
+
+            return commentDiv;
+        }
+    </script>
+</Layout>
