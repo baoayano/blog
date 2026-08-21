@@ -319,49 +319,65 @@
     margin: 1.5rem 0;
     background-color: #f3f3f362 !important;
     font-size: 1rem;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+
+    white-space: pre;
+    word-wrap: normal;
+
+    -webkit-overflow-scrolling: touch;
 
     span {
         font-family: var(--font-code) !important;
     }
+
+    code {
+        display: block;
+        width: max-content;
+        min-width: 100%;
+    }
 }
 
+/* Light theme */
 code.colored-output {
-    color: #cdd6f4!important;
+    color: #333 !important;
     font-family: var(--font-code) !important;
 
     .output-red {
-        color: #f38ba8!important;
+        color: #ca3030 !important;
     }
 
     .output-green {
-        color: #a6e3a1!important;
+        color: #40a02b !important;
     }
 
     .output-yellow {
-        color: #f9e2af!important;
+        color: #c48732 !important;
     }
 
     .output-blue {
-        color: #89b4fa!important;
+        color: #1e66f5 !important;
     }
 
     .output-cyan {
-        color: #94e2d5!important;
+        color: #94e2d5 !important;
     }
 
     .output-purple {
-        color: #cba6f7!important;
+        color: #7b4dd0 !important;
     }
 
     .output-gray {
-        color: #6c7081!important;
+        color: #6c7081 !important;
     }
 
     .output-orange {
-        color: #f5a97f!important;
+        color: #d86729 !important;
     }
 }
 
+/* Dark theme */
 .dark {
     .astro-code,
     .astro-code :not(.colored-output) span {
@@ -371,5 +387,42 @@ code.colored-output {
         font-style: var(--shiki-dark-font-style) !important;
         font-weight: var(--shiki-dark-font-weight) !important;
         text-decoration: var(--shiki-dark-text-decoration) !important;
+    }
+
+    code.colored-output {
+        color: #cdd6f4 !important;
+        font-family: var(--font-code) !important;
+
+        .output-red {
+            color: #f38ba8 !important;
+        }
+
+        .output-green {
+            color: #a6e3a1 !important;
+        }
+
+        .output-yellow {
+            color: #f9e2af !important;
+        }
+
+        .output-blue {
+            color: #89b4fa !important;
+        }
+
+        .output-cyan {
+            color: #94e2d5 !important;
+        }
+
+        .output-purple {
+            color: #cba6f7 !important;
+        }
+
+        .output-gray {
+            color: #6c7081 !important;
+        }
+
+        .output-orange {
+            color: #f5a97f !important;
+        }
     }
 }
